@@ -1,3 +1,4 @@
+{% include _layout.html %}
 {% assign posts = site.posts %}
 {% if site.paginate > 0 %}{% assign posts = paginator.posts %}{% endif %}
 
@@ -7,5 +8,4 @@
     {% include _macro/post.html %}
   {% endfor %}
 </section>
-
 {% include _partials/pagination.html %}

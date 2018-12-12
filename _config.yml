@@ -119,7 +119,7 @@ index_with_subtitle: false
 menu:
   home: /
   categories: /categories/ #分类页
-  #about: /about/          #关于页面
+  about: /about/          #关于页面
   archives: /archives/     #归档页面
   tags: /tags/
   #sitemap: /sitemap.xml

@@ -3,10 +3,11 @@
 
 <section id="posts" class="posts-expand">
   {% for post in posts %}
-    {% assign is_index = true %}
-    {% include _macro/post.html %}
+  {% assign is_index = true %}
+  {% include _macro/post.html %}
   {% endfor %}
 </section>
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJBQ7PV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJBQ7PV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 {% include _partials/pagination.html %}

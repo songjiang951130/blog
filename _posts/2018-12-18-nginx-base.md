@@ -1,6 +1,6 @@
 ---
 title: nginx 基本知识
-date: 2013-12-24 23:29:53
+date: 2018-12-18 21:55:33
 categories:
 - nginx
 tags:

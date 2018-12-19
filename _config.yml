@@ -382,8 +382,8 @@ baidu_analytics: b2c1bbeb1bb5f7f95f6d7c53be416580
 
 #开启打赏功能
 reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
-wechatpay: /path/to/wechat-reward-image
-alipay: /assets/reward/alipay.jpeg
+#wechatpay: /path/to/wechat-reward-image
+alipay: /assets/images/reward/alipay.jpeg
 
 # 评论支持 好像服务都不支持了
 # Duoshuo ShortName

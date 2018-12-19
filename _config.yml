@@ -617,7 +617,7 @@ exturl: false
 #! UNLESS YOU KNOW WHAT YOU ARE DOING
 #! ---------------------------------------------------------------
 
-# Motion
+# Motion 动画效果
 use_motion: true
 
 # Fancybox

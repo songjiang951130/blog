@@ -1,5 +1,5 @@
 ---
-title: nginx 基本知识
+title: nginx 负载均衡
 date: 2018-12-18 21:55:33
 categories:
 - nginx

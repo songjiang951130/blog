@@ -222,11 +222,15 @@ font:
 #   Map a menu item to a specific FontAwesome icon name.
 #   Key is the name of the item and value is the name of FontAwesome icon. Key is case-senstive.
 #   When an globe mask icon presenting up means that the item has no mapping icon.
+social:
+  Github: https://github.com/songjiang951130
+  CSDN: https://me.csdn.net/magicianofcodes
+  
 social_icons:
   enable: true
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
-  GitHub: songjiang951130@github.com
+  GitHub: github
   Twitter: twitter
   Weibo: weibo
 

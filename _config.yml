@@ -6,7 +6,7 @@
 # Site
 title: songjiang blog
 subtitle: 由 Jekyll 强力驱动  主题 - NexT.Mist
-description: description
+description: description test
 author: song jiang
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans
@@ -554,11 +554,11 @@ busuanzi_count:
   # custom pv span for the whole site
   site_pv: true
   site_pv_header: <i class="fa fa-eye"></i>
-  site_pv_footer: 人
+  site_pv_footer: 次
   # custom pv span for one page only
   page_pv: true
   page_pv_header: <i class="fa fa-file-o"></i>
-  page_pv_footer:
+  page_pv_footer: 次
 
 
 # Tencent analytics ID

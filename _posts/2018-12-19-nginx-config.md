@@ -74,5 +74,11 @@ server{
 ```
 同一个端口（80），不同的域名 可以匹配多个项目。
 
-
-
+在开始处理一个HTTP请求时，Nginx会取出header头中的Host，与每个server中的
+server_name进行匹配，以此决定到底由哪一个server块来处理这个请求。有可能一个Host与
+多个server块中的server_name都匹配，这时就会根据匹配优先级来选择实际处理的server块。
+server_name与Host的匹配优先级如下：
+### 首先选择所有字符串完全匹配的server_name，如www.testweb.com 。
+### 其次选择通配符在前面的server_name，如*.testweb.com。
+### 再次选择通配符在后面的server_name，如www.testweb.* 。
+### 最后选择使用正则表达式才匹配的server_name，如~^\.testweb\.com$。

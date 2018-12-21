@@ -14,7 +14,6 @@ tags:
 worker_processes  1;
 #pid        logs/nginx.pid;
 
-
 events {
     worker_connections  1024;
 }

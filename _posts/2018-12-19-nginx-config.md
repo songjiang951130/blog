@@ -1,6 +1,7 @@
 ---
 title: nginx 文件配置
 date: 2018-12-19 21:52:40
+updated_at: 2000-12-19 21:52:40
 categories:
 - nginx
 tags:
@@ -43,6 +44,7 @@ http {
             root   html;
             index  index.html index.htm;
         }
+    }
     include servers/*;
 }
 ```

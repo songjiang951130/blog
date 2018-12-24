@@ -70,18 +70,14 @@
               </time>
             {% endif %}
 
-            {% if site.post_meta.created_at and site.post_meta.updated_at %}
+            {% if site.post_meta.created_at and site.post_meta.updated_at and post.updated_at %}
               <span class="post-meta-divider">|</span>
-            {% endif %}
-            {% if site.post_meta.updated_at %}
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              {% if site.post_meta.item_text %}
-                <span class="post-meta-item-text">{{ __.post.modified }}</span>
-              {% endif %}
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+              <span class="post-meta-item-text">{{ __.post.modified }}</span>
               <time title="{{ __.post.modified }}" itemprop="dateModified" datetime="{{ post.updated | date: site.date_format }}">
-                {{ post.updated | date: site.date_format }}
+                {{ post.updated_at | date: site.date_format }}
               </time>
             {% endif %}
           </span>

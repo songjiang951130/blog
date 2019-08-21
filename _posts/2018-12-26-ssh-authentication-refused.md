@@ -1,15 +1,16 @@
 ---
 title: sshd Authentication refused
-date: 2018-12-26 10:29:03
-# updated_at: 2000-12-19 21:52:40
+date: '2018-12-26T10:29:03.000Z'
 categories:
-- ssh
+  - ssh
 tags:
-- ssh
-- 免密登录
+  - ssh
+  - 免密登录
 ---
-配置相关 ssh 后还是无法免密登录，后来发现了一篇文章说是 ssh 安全问题
-cat /var/log/secure
+
+# 2018-12-26-ssh-Authentication refused
+
+配置相关 ssh 后还是无法免密登录，后来发现了一篇文章说是 ssh 安全问题 cat /var/log/secure
 
 ```bash
 Authentication refused: bad ownership or modes for directory /home/songjiang
@@ -18,10 +19,12 @@ Authentication refused: bad ownership or modes for directory /home/songjiang
 很明显这个提示说：这个文件的所有人和 modes（文件夹默认是755，文件是644） 有误，所以授权拒绝了。因为其他开发人员乱动了文件权限所以我这个文件夹变成了 777
 
 相关命令
+
 ```bash
 chmod 755 /home/songjiang
 ```
-把用户目录  /home/songjiang 改为 755 后，却出现无法访问的问题。原来里面有不属于我的文件且无法读取，删除或者chmod一下就好
+
+把用户目录 /home/songjiang 改为 755 后，却出现无法访问的问题。原来里面有不属于我的文件且无法读取，删除或者chmod一下就好
 
 另外 .ssh 文件夹下modes 如下：
 
@@ -33,3 +36,4 @@ chmod 755 /home/songjiang
 ```
 
 ps:吐槽一下，乱改文件权限真的烦
+

@@ -3,5 +3,7 @@ layout: page
 type: about
 ---
 
-Building...
-个人简介页面
+# index
+
+Building... 个人简介页面
+

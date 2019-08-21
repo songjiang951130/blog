@@ -1,16 +1,17 @@
 ---
 title: nginx 文件配置
-date: 2018-12-19 21:52:40
-updated_at: 2000-12-19 21:52:40
+date: '2018-12-19T21:52:40.000Z'
+updated_at: '2000-12-19T21:52:40.000Z'
 categories:
-- nginx
+  - nginx
 tags:
-- 文件配置
-- server
+  - 文件配置
+  - server
 ---
-## config 写法
 
-```nginx
+# config 写法
+
+```text
 #user  root;
 worker_processes  1;
 #pid        logs/nginx.pid;
@@ -50,7 +51,8 @@ http {
 ```
 
 servers/myproject.conf
-```nginx
+
+```text
 server{
     listen 80;
     server_name songjiang.damo.haibian-d.com;
@@ -73,13 +75,16 @@ server{
     }
 }
 ```
+
 同一个端口（80），不同的域名 可以匹配多个项目。
 
-在开始处理一个HTTP请求时，Nginx会取出header头中的Host，与每个server中的
-server_name进行匹配，以此决定到底由哪一个server块来处理这个请求。有可能一个Host与
-多个server块中的server_name都匹配，这时就会根据匹配优先级来选择实际处理的server块。
-server_name与Host的匹配优先级如下：
-### 首先选择所有字符串完全匹配的server_name，如www.testweb.com 。
-### 其次选择通配符在前面的server_name，如*.testweb.com。
-### 再次选择通配符在后面的server_name，如www.testweb.* 。
-### 最后选择使用正则表达式才匹配的server_name，如~^\.testweb\.com$。
+在开始处理一个HTTP请求时，Nginx会取出header头中的Host，与每个server中的 server\_name进行匹配，以此决定到底由哪一个server块来处理这个请求。有可能一个Host与 多个server块中的server\_name都匹配，这时就会根据匹配优先级来选择实际处理的server块。 server\_name与Host的匹配优先级如下：
+
+## 首先选择所有字符串完全匹配的server\_name，如www.testweb.com 。
+
+## 其次选择通配符在前面的server\_name，如\*.testweb.com。
+
+## 再次选择通配符在后面的server\_name，如www.testweb.\* 。
+
+## 最后选择使用正则表达式才匹配的server\_name，如~^.testweb.com$。
+

@@ -2,20 +2,17 @@
 
 > NexT is a high quality elegant [Jekyll](https://jekyllrb.com) theme ported from [Hexo NexT](https://github.com/iissnan/hexo-theme-next). It is crafted from scratch, with love.
 
-
- * [Live Preview](http://simpleyyt.github.io/jekyll-theme-next/)
- * [Yitao's Blog](http://simpleyyt.com)
+* [Live Preview](http://simpleyyt.github.io/jekyll-theme-next/)
+* [Yitao's Blog](http://simpleyyt.com)
 
 ## Screenshots
 
-* Desktop
-![Desktop Preview](http://iissnan.com/nexus/next/desktop-preview.png)
-
+* Desktop ![Desktop Preview](http://iissnan.com/nexus/next/desktop-preview.png)
 * Sidebar
 
 ![Desktop Sidebar Preview](http://iissnan.com/nexus/next/desktop-sidebar-preview.png)
 
-* Sidebar (Post details page)
+* Sidebar \(Post details page\)
 
 ![Desktop Sidebar Preview](http://iissnan.com/nexus/next/desktop-sidebar-toc.png)
 
@@ -23,42 +20,40 @@
 
 ![Mobile Preview](http://iissnan.com/nexus/next/mobile.png)
 
-
 ## Installation
 
 Check whether you have `Ruby 2.1.0` or higher installed:
 
-```sh
+```bash
 ruby --version
 ```
 
 Install `Bundler`:
 
-```sh
+```bash
 gem install bundler
 ```
 
 Clone NexT theme:
 
-```sh
+```bash
 git clone https://github.com/Simpleyyt/jekyll-theme-next.git
 cd jekyll-theme-next
 ```
 
 Install Jekyll and other dependencies from the GitHub Pages gem:
 
-```sh
+```bash
 bundle install
 ```
 
 Run your Jekyll site locally:
 
-```sh
+```bash
 bundle exec jekyll server
 ```
 
 More Details：[Setting up your GitHub Pages site locally with Jekyll](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/)
-
 
 ## Features
 
@@ -66,7 +61,7 @@ More Details：[Setting up your GitHub Pages site locally with Jekyll](https://h
 
 Default language is English.
 
-```yml
+```text
 language: en
 # language: zh-Hans
 # language: fr-FR
@@ -78,7 +73,7 @@ language: en
 
 Set `language` field as following in site `_config.yml` to change to Chinese.
 
-```yml
+```text
 language: zh-Hans
 ```
 
@@ -88,7 +83,7 @@ NexT has native support for `DuoShuo` and `Disqus` comment systems.
 
 Add the following snippets to your `_config.yml`:
 
-```yml
+```text
 duoshuo:
   enable: true
   shortname: your-duoshuo-shortname
@@ -96,7 +91,7 @@ duoshuo:
 
 OR
 
-```yml
+```text
 disqus_shortname: your-disqus-shortname
 ```
 
@@ -104,7 +99,7 @@ disqus_shortname: your-disqus-shortname
 
 NexT can automatically add links to your Social Media accounts:
 
-```yml
+```text
 social:
   GitHub: your-github-url
   Twitter: your-twitter-url
@@ -120,19 +115,17 @@ social:
 Set `rss` field in theme's `_config.yml`, as the following value:
 
 1. `rss: false` will totally disable feed link.
-2. `rss:  ` use sites' feed link. This is the default option.
+2. `rss:` use sites' feed link. This is the default option.
 
-    Follow the installation instruction in the plugin's README. After the configuration is done for this plugin, the feed link is ready too.
+   Follow the installation instruction in the plugin's README. After the configuration is done for this plugin, the feed link is ready too.
 
 3. `rss: http://your-feed-url` set specific feed link.
 
 ### Up to 5 code highlight themes built-in.
 
-NexT uses [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme) with 5 themes for you to choose from.
-Next use `normal` by default. Have a preview about `normal` and `night`:
+NexT uses [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme) with 5 themes for you to choose from. Next use `normal` by default. Have a preview about `normal` and `night`:
 
-![Tomorrow Normal Preview](http://iissnan.com/nexus/next/tomorrow-normal.png)
-![Tomorrow Night Preview](http://iissnan.com/nexus/next/tomorrow-night.png)
+![Tomorrow Normal Preview](http://iissnan.com/nexus/next/tomorrow-normal.png) ![Tomorrow Night Preview](http://iissnan.com/nexus/next/tomorrow-night.png)
 
 Head over to [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme) for more details.
 
@@ -140,8 +133,7 @@ Head over to [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme) fo
 
 NexT comes with few configurations.
 
-```yml
-
+```text
 # Menu configuration.
 menu:
   home: /
@@ -163,9 +155,9 @@ fancybox: true
 
 # Specify the date when the site was setup
 since: 2013
-
 ```
 
 ## Browser support
 
 ![Browser support](http://iissnan.com/nexus/next/browser-support.png)
+

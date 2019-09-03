@@ -9,7 +9,7 @@ tags:
   - kanane
 ---
 
-# 最大子数组求解以及逐步优化2
+# 最大子数组求解以及逐步优化
 
 [leetcode 传送门](https://leetcode.com/problems/maximum-subarray/)
 

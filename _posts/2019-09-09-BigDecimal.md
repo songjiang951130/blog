@@ -2,9 +2,9 @@
 title: 高精度计算 BigDecimal
 date: '2019-09-09'
 categories:
-  - 
+  - java
 tags:
-  - 风险
+  - java
 ---
 
 ## 实例化问题

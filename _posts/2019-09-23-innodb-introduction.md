@@ -7,8 +7,10 @@ tags:
   - mysql innodb
 ---
 
+
 innodb 是一款兼顾高可用和高性能的通用存储引擎。mysql 5.
-7 版本作为默认的存储引擎。可以修改默认的存储引擎或者在创建表的时候指定存储引擎。
+7 版本作为默认的存储引擎。可以修改默认的存储引擎或者在创建表的时候指定存储引擎。  
+[英文原文链接](https://dev.mysql.com/doc/refman/5.7/en/innodb-introduction.html)
 
 # 核心优势
  - DML(数据库增删改查)支持 ACID模型,通过事务、事故恢复等保护数据

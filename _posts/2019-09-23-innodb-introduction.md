@@ -4,7 +4,8 @@ date: '2019-09-23'
 categories:
   - mysql
 tags:
-  - mysql innodb
+  - mysql
+  - innodb
 ---
 
 

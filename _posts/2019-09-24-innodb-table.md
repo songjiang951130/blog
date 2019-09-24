@@ -4,7 +4,8 @@ date: '2019-09-24'
 categories:
   - mysql
 tags:
-  - mysql innodb
+  - mysql
+  - innodb
 ---
 
 [官方英文链接](https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html)

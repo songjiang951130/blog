@@ -69,7 +69,6 @@
                 {{ post.date | date: site.date_format }}
               </time>
             {% endif %}
-
             {% if site.post_meta.created_at and site.post_meta.updated_at and post.updated_at %}
               <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
@@ -81,7 +80,20 @@
               </time>
             {% endif %}
           </span>
-
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Page Title</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+      <script src="main.js"></script>
+  </head>
+  <body>
+      
+  </body>
+  </html>
           {% if post.categories and post.categories.size > 0 and site.post_meta.categories %}
             <span class="post-category" >
             {% if site.post_meta.created_at or site.post_meta.updated_at %}
@@ -208,7 +220,7 @@
           {% if site.busuanzi_count.enable and site.busuanzi_count.page_pv and is_index == false or is_index == nil%}
             <span class="post-meta-divider">|</span>
             <span class="page-pv">{{ site.busuanzi_count.page_pv_header }}</span>
-            <span>访问</span>
+            <span class="post-meta-item-text">{{ __.post.visitors }}</span>
             <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>{{ site.busuanzi_count.page_pv_footer }}
             </span>
           {% endif %}

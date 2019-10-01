@@ -14,7 +14,7 @@ tags:
 
 了解如何利用缓冲池将经常访问的数据保留在内存中是MySQL优化的重要手段
 
-# 缓冲池的LRU算法
+# 缓冲池的LRU算法
 
 缓冲池由变体的LRU算法管理。当有新的页面需要加入到缓冲池中时，移除最近最少使用的页面，将新页面加入到```linked list```的中点(从后面来看，并不是完全的中点)。中点将list分为两部分：
 - 头部分到中点的子列表是表示最近常用的 yong 页面
@@ -22,7 +22,7 @@ tags:
 
 ## 算法示意图
 
-![list 示意图](https://dev.mysql.com/doc/refman/5.7/en/images/innodb-buffer-pool-list.png)
+![list 示意图](https://dev.mysql.com/doc/refman/5.7/en/images/innodb-buffer-pool-list.png)
 
 算法将大量页面保留到新子列表中，旧子列表包含的是较少使用的待移除的页。  
 默认算法操作如下：

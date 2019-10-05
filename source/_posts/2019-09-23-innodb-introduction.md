@@ -1,0 +1,20 @@
+---
+title: innodb 中文简介
+date: '2019-09-23'
+categories:
+  - mysql
+tags:
+  - mysql
+  - innodb
+---
+
+
+innodb 是一款兼顾高可用和高性能的通用存储引擎。mysql 5.
+7 版本作为默认的存储引擎。可以修改默认的存储引擎或者在创建表的时候指定存储引擎。  
+[英文原文链接](https://dev.mysql.com/doc/refman/5.7/en/innodb-introduction.html)
+
+# 核心优势
+ - DML(数据库增删改查)支持 ACID模型,通过事务、事故恢复等保护数据
+ - 行级锁和oracle级别的一致性读取提高并发性能
+ - 数据按主键进行排序优化，innodb 主键是聚簇索引可以减少io读写次数，优化查询性能
+ - 支持外键，用于维护数据的完整性。外键的增删改，会确保在不同表之间的一致性

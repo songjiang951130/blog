@@ -8,6 +8,10 @@ npm install leancloud-storage --save
 npm install valine --save
 npm install hexo-leancloud-counter-security --save
 npm install babel-runtime --save
+//订阅配置
+npm install hexo-generator-feed --save
+//本地搜索安装
+npm install hexo-generator-search --save
 ```
 # 运行
 ```

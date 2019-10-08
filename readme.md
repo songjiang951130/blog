@@ -7,6 +7,10 @@ git clone https://github.com/theme-next/hexo-theme-next themes/next
 npm install leancloud-storage --save
 npm install valine --save
 ```
+# 运行
+```
+hexo server
+```
 
 # 部署
 ```

@@ -82,3 +82,18 @@ deploy:
   type: git
   repository: https://github.com/songjiang951130/songjiang951130.github.io
   branch: master
+
+leancloud_counter_security:
+  enable_sync: true
+
+leancloud_visitors:
+  enable: true
+  app_id: L3bH3af8TyOlV1NogaXODbSY-gzGzoHsz
+  app_key: xJMFUUFNVBcXNb2Yp3A8xhlW
+  username: 983804576@qq.com
+  password: Sj123456
+  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
+  # If you don't care about security in leancloud counter and just want to use it directly
+  # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
+  security: false
+  betterPerformance: false

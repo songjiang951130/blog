@@ -79,4 +79,6 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 ## new Docs: https://hexo.io/docs/github-pages
 deploy:
-  type: 
+  type: git
+  repository: https://github.com/songjiang951130/songjiang951130.github.io
+  branch: master

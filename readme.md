@@ -10,6 +10,7 @@ npm install valine --save
 
 # 部署
 ```
-hexo g
+hexo clean
+hexo generate
 hexo deploy
 ```

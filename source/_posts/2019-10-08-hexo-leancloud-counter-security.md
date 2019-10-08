@@ -29,6 +29,20 @@ leancloud_counter_security:
 未配置 enable_sync
 
 
+# 最后
+我总感觉 leancloud不太稳，如果是展示访问人数，我还是推荐卜算子，直接启用就好使
+```
+busuanzi_count:
+  enable: true
+  total_visitors: true
+  total_visitors_icon: user
+  total_views: true
+  total_views_icon: eye
+  post_views: true
+  post_views_icon: eye
+```
+
+
 
 
 

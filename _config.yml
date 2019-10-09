@@ -75,16 +75,6 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
-menu:
-  home: / || home
-  # about: /about/ || user
-  tags: /tags/ || tags
-  categories: /categories/ || th
-  archives: /archives/ || archive
-  # schedule: /schedule/ || calendar
-  sitemap: /sitemap.xml || sitemap
-  #commonweal: /404/ || heartbeat
-
 feed:
   type: atom
   path: atom.xml

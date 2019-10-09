@@ -1,0 +1,34 @@
+scheme: Gemini
+
+menu:
+  home: / || home
+  about: /about/ || user
+  tags: /tags/ || tags
+  categories: /categories/ || th
+  archives: /archives/ || archive
+  # schedule: /schedule/ || calendar
+  sitemap: /sitemap.xml || sitemap
+  #commonweal: /404/ || heartbeat
+
+# Social Links
+# Usage: `Key: permalink || icon`
+# Key is the link label showing to end users.
+# Value before `||` delimiter is the target permalink.
+# Value after `||` delimiter is the name of Font Awesome icon. If icon (with or without delimiter) is not specified, globe icon will be loaded.
+social:
+  GitHub: https://github.com/songjiang951130 || github
+  E-Mail: mailto:songjiang951130@gmail.com || envelope
+  #Weibo: https://weibo.com/yourname || weibo
+  #Google: https://plus.google.com/yourname || google
+  #Twitter: https://twitter.com/yourname || twitter
+  #FB Page: https://www.facebook.com/yourname || facebook
+  #VK Group: https://vk.com/yourname || vk
+  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
+  #YouTube: https://youtube.com/yourname || youtube
+  #Instagram: https://instagram.com/yourname || instagram
+  #Skype: skype:yourname?call|chat || skype
+
+social_icons:
+  enable: true
+  icons_only: false
+  transition: false

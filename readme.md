@@ -12,6 +12,8 @@ npm install babel-runtime --save
 npm install hexo-generator-feed --save
 //本地搜索安装
 npm install hexo-generator-search --save
+//站点地图
+npm install hexo-generator-sitemap --save
 ```
 # 运行
 ```

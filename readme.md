@@ -14,6 +14,8 @@ npm install hexo-generator-feed --save
 npm install hexo-generator-search --save
 //站点地图
 npm install hexo-generator-sitemap --save
+npm install hexo-generator-tag --save
+npm install hexo-generator-category --save
 ```
 # 运行
 ```

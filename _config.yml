@@ -4,7 +4,7 @@
 
 # Site
 title: 梦之马的乐园
-subtitle: 欢迎你有缘人
+subtitle: 生活不止代码，还有诗和远方
 description: 生命不息，折腾不止
 keywords: dream 梦马
 author: 梦之马
@@ -83,6 +83,17 @@ feed:
   content:
   content_limit: 140
   content_limit_delim: ' '
+
+# 字数和阅读时长统计
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+  exclude_codeblock: false
+  awl: 2
+  wpm: 275
+  suffix: mins.
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

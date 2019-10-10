@@ -1,6 +1,5 @@
 ---
 title: 穷爸爸富爸爸
-updated_at: '2019-10-05'
 categories:
   - 投资
 tags:

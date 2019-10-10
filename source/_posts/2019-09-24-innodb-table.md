@@ -1,7 +1,5 @@
 ---
 title: innodb 最佳实践
-#默认获取文件名上的日期。data可覆盖.
-updated_at: '2019-09-29'
 categories:
   - mysql
 tags:

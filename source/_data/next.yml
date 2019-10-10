@@ -114,7 +114,7 @@ scheme: Gemini
 
 menu:
   home: / || home
-  about: /about/ || user
+  # about: /about/ || user
   tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
@@ -177,7 +177,7 @@ avatar:
   # If true, the avatar would be dispalyed in circle.
   rounded: true
   # If true, the avatar would be rotated with the cursor.
-  rotated: true
+  rotated: false
 
 # Posts / Categories / Tags in sidebar.
 site_state: true

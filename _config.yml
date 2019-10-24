@@ -17,6 +17,7 @@ url: https://songjiang951130.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
+port: 5000
 
 # Directory
 source_dir: source

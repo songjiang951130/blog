@@ -27,9 +27,7 @@ hexo server
 
 # 部署
 ```
-hexo clean
-hexo generate
-hexo deploy
+hexo clean;hexo generate;hexo deploy
 ```
 
 # [查看google索引效果](https://search.google.com/search-console?resource_id=https%3A%2F%2Fsongjiang951130.github.io%2F)

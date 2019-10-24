@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>梦之马的乐园</title>
+  
+  <subtitle>生活不止代码，还有诗和远方</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://songjiang951130.github.io/"/>
+  <updated>2019-10-21T12:55:34.099Z</updated>
+  <id>https://songjiang951130.github.io/</id>
+  
+  <author>
+    <name>梦之马</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DispatcherServlet 处理流程</title>
+    <link href="https://songjiang951130.github.io/2019/10/21/2019-10-21-DispatcherServlet/"/>
+    <id>https://songjiang951130.github.io/2019/10/21/2019-10-21-DispatcherServlet/</id>
+    <published>2019-10-21T10:12:04.824Z</published>
+    <updated>2019-10-21T12:55:34.099Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;默认配置&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#默认配置&quot;&gt;&lt;/a&gt; 默认配置&lt;/h1&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="spring" scheme="https://songjiang951130.github.io/categories/spring/"/>
+    
+      <category term="java" scheme="https://songjiang951130.github.io/categories/spring/java/"/>
+    
+    
+      <category term="spring-mvc" scheme="https://songjiang951130.github.io/tags/spring-mvc/"/>
+    
+      <category term="spring-webmvc" scheme="https://songjiang951130.github.io/tags/spring-webmvc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>攀登者电影</title>
+    <link href="https://songjiang951130.github.io/2019/10/09/2019-10-01-climber/"/>
+    <id>https://songjiang951130.github.io/2019/10/09/2019-10-01-climber/</id>
+    <published>2019-10-09T03:43:24.750Z</published>
+    <updated>2019-10-10T03:03:34.932Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;剧情介绍不剧透那种，主要讲的是一行人历经险阻&lt;code&gt;两次&lt;/code&gt;登上珠穆朗玛峰的故事。&lt;br&gt;
+看这部电影最大原因还是因为吴京，毕竟之前的流浪地球太火爆了。&lt;/p&gt;
+&lt;h1 id=&quot;为什么要登山&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="movie" scheme="https://songjiang951130.github.io/categories/movie/"/>
+    
+    
+      <category term="攀登者" scheme="https://songjiang951130.github.io/tags/%E6%94%80%E7%99%BB%E8%80%85/"/>
+    
+      <category term="吴京" scheme="https://songjiang951130.github.io/tags/%E5%90%B4%E4%BA%AC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>innodb 最佳实践</title>
+    <link href="https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/"/>
+    <id>https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/</id>
+    <published>2019-10-09T03:43:24.750Z</published>
+    <updated>2019-10-10T03:01:00.585Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="https://songjiang951130.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://songjiang951130.github.io/tags/mysql/"/>
+    
+      <category term="innodb" scheme="https://songjiang951130.github.io/tags/innodb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>穷爸爸富爸爸</title>
+    <link href="https://songjiang951130.github.io/2019/10/09/2019-10-05-rich-father/"/>
+    <id>https://songjiang951130.github.io/2019/10/09/2019-10-05-rich-father/</id>
+    <published>2019-10-09T03:43:24.750Z</published>
+    <updated>2019-10-10T03:03:42.625Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;为企业老板打工，出售自己的个人时间和技能，然后为郭嘉贡献税收，贷款买房又为银行创造收益。&lt;/p&gt;
+&lt;p&gt;（首套）房子不是资产，在贷款购买首套房的情况下，你需要每月支付钱，甚至直到30年后才有房子的所有权。这构成了每月的必须支出项，这样缺少了更多的现金去购置资产。&lt;br&gt;
+作
+        
+      
+    
+    </summary>
+    
+    
+      <category term="投资" scheme="https://songjiang951130.github.io/categories/%E6%8A%95%E8%B5%84/"/>
+    
+    
+      <category term="穷爸爸富爸爸" scheme="https://songjiang951130.github.io/tags/%E7%A9%B7%E7%88%B8%E7%88%B8%E5%AF%8C%E7%88%B8%E7%88%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo-leancloud-counter-security 配置</title>
+    <link href="https://songjiang951130.github.io/2019/10/09/2019-10-08-hexo-leancloud-counter-security/"/>
+    <id>https://songjiang951130.github.io/2019/10/09/2019-10-08-hexo-leancloud-counter-security/</id>
+    <published>2019-10-09T03:43:24.750Z</published>
+    <updated>2019-10-09T03:43:24.750Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;安装&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#安装&quot;&gt;&lt;/a&gt; 安装&lt;/h1&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="https://songjiang951130.github.io/categories/hexo/"/>
+    
+    
+      <category term="hexo-leancloud-counter-security" scheme="https://songjiang951130.github.io/tags/hexo-leancloud-counter-security/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>innodb 缓冲池</title>
+    <link href="https://songjiang951130.github.io/2019/09/24/2019-09-24-innodb-buffer-pool/"/>
+    <id>https://songjiang951130.github.io/2019/09/24/2019-09-24-innodb-buffer-pool/</id>
+    <published>2019-09-24T07:18:00.000Z</published>
+    <updated>2019-10-10T02:02:06.683Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;1缓冲池是在内存中用于存放表和索引的一块区域。直接在内存中获取常用数据。在专有数据库中通常分配&lt;code&gt;80%&lt;/code&gt;的物理内存给缓冲池。&lt;br&gt;
+为了提高大量的读操作，缓冲池分为多个页，每页可能包含多行数据。缓冲池通过实现一种&lt;code&gt;linked
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="https://songjiang951130.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://songjiang951130.github.io/tags/mysql/"/>
+    
+      <category term="innodb" scheme="https://songjiang951130.github.io/tags/innodb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>innodb 中文简介</title>
+    <link href="https://songjiang951130.github.io/2019/09/23/2019-09-23-innodb-introduction/"/>
+    <id>https://songjiang951130.github.io/2019/09/23/2019-09-23-innodb-introduction/</id>
+    <published>2019-09-23T00:00:00.000Z</published>
+    <updated>2019-10-09T03:43:24.750Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;innodb 是一款兼顾高可用和高性能的通用存储引擎。mysql 5.&lt;br&gt;
+7 版本作为默认的存储引擎。可以修改默认的存储引擎或者在创建表的时候指定存储引擎。&lt;br&gt;
+&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="https://songjiang951130.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://songjiang951130.github.io/tags/mysql/"/>
+    
+      <category term="innodb" scheme="https://songjiang951130.github.io/tags/innodb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阿里巴巴 java 手册</title>
+    <link href="https://songjiang951130.github.io/2019/09/10/2019-09-10-alibaba-java-manual/"/>
+    <id>https://songjiang951130.github.io/2019/09/10/2019-09-10-alibaba-java-manual/</id>
+    <published>2019-09-10T01:59:33.000Z</published>
+    <updated>2019-10-09T03:43:24.749Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;所有的相同类型的包装类对象之间值的比较全部使用-equals-方法比较&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#所有的相同类型的包装类对象之间值的比较全部使用-equals-方法比较&quot;&gt;&lt;/a&gt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="https://songjiang951130.github.io/categories/java/"/>
+    
+    
+      <category term="阿里巴巴" scheme="https://songjiang951130.github.io/tags/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4/"/>
+    
+      <category term="java 手册" scheme="https://songjiang951130.github.io/tags/java-%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高精度计算 BigDecimal</title>
+    <link href="https://songjiang951130.github.io/2019/09/09/2019-09-09-BigDecimal/"/>
+    <id>https://songjiang951130.github.io/2019/09/09/2019-09-09-BigDecimal/</id>
+    <published>2019-09-09T00:00:00.000Z</published>
+    <updated>2019-10-09T03:43:24.749Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;实例化问题&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#实例化问题&quot;&gt;&lt;/a&gt; 实例化问题&lt;/h2&gt;
+&lt;p&gt;不能用double进行实例化，同样会出现精度丢失的问题&lt;/p&gt;
+&lt;p&gt;错误示例比如&lt;/p&gt;
+&lt;figure
+        
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="https://songjiang951130.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="https://songjiang951130.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>投资最重要的事 阅读总结</title>
+    <link href="https://songjiang951130.github.io/2019/09/05/2019-09-05-risk/"/>
+    <id>https://songjiang951130.github.io/2019/09/05/2019-09-05-risk/</id>
+    <published>2019-09-05T00:00:00.000Z</published>
+    <updated>2019-10-09T03:43:24.749Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;风险定义&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#风险定义&quot;&gt;&lt;/a&gt; 风险定义&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对未来结果的不确定性，以及不利结果的损失不确定性&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="投资" scheme="https://songjiang951130.github.io/categories/%E6%8A%95%E8%B5%84/"/>
+    
+    
+      <category term="风险" scheme="https://songjiang951130.github.io/tags/%E9%A3%8E%E9%99%A9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rocketmq 资料整理</title>
+    <link href="https://songjiang951130.github.io/2019/09/02/2019-09-02-rocketmq-doc/"/>
+    <id>https://songjiang951130.github.io/2019/09/02/2019-09-02-rocketmq-doc/</id>
+    <published>2019-09-02T00:00:00.000Z</published>
+    <updated>2019-10-09T03:43:24.749Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;中文官网&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#中文官网&quot;&gt;&lt;/a&gt; 中文官网：&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://rocketmq.cloud/zh-cn&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="消息队列" scheme="https://songjiang951130.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+    
+      <category term="rocketmq" scheme="https://songjiang951130.github.io/tags/rocketmq/"/>
+    
+      <category term="spring-boot" scheme="https://songjiang951130.github.io/tags/spring-boot/"/>
+    
+      <category term="doc" scheme="https://songjiang951130.github.io/tags/doc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql 时间类型文档翻译</title>
+    <link href="https://songjiang951130.github.io/2019/07/25/2019-07-25-mysql-date-type/"/>
+    <id>https://songjiang951130.github.io/2019/07/25/2019-07-25-mysql-date-type/</id>
+    <published>2019-07-25T00:00:00.000Z</published>
+    <updated>2019-10-09T03:43:24.749Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;date、datatime、timestamp 都是时间类型，这部分内容将介绍它们的特点，相似和不同。Mysql 识别date、datetime、timestamp的值按以下&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="https://songjiang951130.github.io/categories/mysql/"/>
+    
+    
+      <category term="timestamp" scheme="https://songjiang951130.github.io/tags/timestamp/"/>
+    
+      <category term="datetime" scheme="https://songjiang951130.github.io/tags/datetime/"/>
+    
+      <category term="date" scheme="https://songjiang951130.github.io/tags/date/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最大子数组求解以及逐步优化</title>
+    <link href="https://songjiang951130.github.io/2019/05/31/2019-05-30-maxsubarray/"/>
+    <id>https://songjiang951130.github.io/2019/05/31/2019-05-30-maxsubarray/</id>
+    <published>2019-05-30T22:55:33.000Z</published>
+    <updated>2019-10-09T03:43:24.749Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;最大子数组求解以及逐步优化&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#最大子数组求解以及逐步优化&quot;&gt;&lt;/a&gt; 最大子数组求解以及逐步优化&lt;/h1&gt;
+&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="https://songjiang951130.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="动态规划" scheme="https://songjiang951130.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+      <category term="最大子数组" scheme="https://songjiang951130.github.io/tags/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="kanane" scheme="https://songjiang951130.github.io/tags/kanane/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sshd Authentication refused</title>
+    <link href="https://songjiang951130.github.io/2018/12/26/2018-12-26-ssh-authentication-refused/"/>
+    <id>https://songjiang951130.github.io/2018/12/26/2018-12-26-ssh-authentication-refused/</id>
+    <published>2018-12-26T10:29:03.000Z</published>
+    <updated>2019-10-09T03:43:24.748Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;2018-12-26-ssh-authentication-refused&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#2018-12-26-ssh-authentication-refused&quot;&gt;&lt;/a&gt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="ssh" scheme="https://songjiang951130.github.io/categories/ssh/"/>
+    
+    
+      <category term="ssh" scheme="https://songjiang951130.github.io/tags/ssh/"/>
+    
+      <category term="免密登录" scheme="https://songjiang951130.github.io/tags/%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>字符串和切片</title>
+    <link href="https://songjiang951130.github.io/2018/12/26/2019-01-22-string-and-slice/"/>
+    <id>https://songjiang951130.github.io/2018/12/26/2019-01-22-string-and-slice/</id>
+    <published>2018-12-26T02:29:03.000Z</published>
+    <updated>2019-10-09T03:43:24.749Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;2019-01-22-string-and-slice&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#2019-01-22-string-and-slice&quot;&gt;&lt;/a&gt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="go" scheme="https://songjiang951130.github.io/categories/go/"/>
+    
+    
+      <category term="string" scheme="https://songjiang951130.github.io/tags/string/"/>
+    
+      <category term="slice" scheme="https://songjiang951130.github.io/tags/slice/"/>
+    
+      <category term="切片" scheme="https://songjiang951130.github.io/tags/%E5%88%87%E7%89%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx 文件配置</title>
+    <link href="https://songjiang951130.github.io/2018/12/20/2018-12-19-nginx-config/"/>
+    <id>https://songjiang951130.github.io/2018/12/20/2018-12-19-nginx-config/</id>
+    <published>2018-12-19T21:52:40.000Z</published>
+    <updated>2019-10-09T03:43:24.748Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;config-写法&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#config-写法&quot;&gt;&lt;/a&gt; config 写法&lt;/h1&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="https://songjiang951130.github.io/categories/nginx/"/>
+    
+    
+      <category term="文件配置" scheme="https://songjiang951130.github.io/tags/%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="server" scheme="https://songjiang951130.github.io/tags/server/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx 负载均衡</title>
+    <link href="https://songjiang951130.github.io/2018/12/18/2018-12-18-nginx-base/"/>
+    <id>https://songjiang951130.github.io/2018/12/18/2018-12-18-nginx-base/</id>
+    <published>2018-12-18T13:55:33.000Z</published>
+    <updated>2019-10-09T08:32:06.024Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;nginx&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#nginx&quot;&gt;&lt;/a&gt; nginx&lt;/h1&gt;
+&lt;h2 id=&quot;什么是nginx&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="https://songjiang951130.github.io/categories/nginx/"/>
+    
+    
+      <category term="反向代理" scheme="https://songjiang951130.github.io/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+    
+      <category term="负载均衡" scheme="https://songjiang951130.github.io/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    
+  </entry>
+  
+</feed>

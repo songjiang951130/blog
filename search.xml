@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>DispatcherServlet 处理流程</title>
+      <link href="/2019/10/21/2019-10-21-DispatcherServlet/"/>
+      <url>/2019/10/21/2019-10-21-DispatcherServlet/</url>
+      
+        <content type="html"><![CDATA[<h1 id="默认配置"><a class="markdownIt-Anchor" href="#默认配置"></a> 默认配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># Default implementation classes for DispatcherServlet&apos;s strategy interfaces.</span><br><span class="line"># Used as fallback when no matching beans are found in the DispatcherServlet context.</span><br><span class="line"># Not meant to be customized by application developers.</span><br><span class="line"></span><br><span class="line">org.springframework.web.servlet.LocaleResolver=org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver</span><br><span class="line"></span><br><span class="line">org.springframework.web.servlet.ThemeResolver=org.springframework.web.servlet.theme.FixedThemeResolver</span><br><span class="line"></span><br><span class="line">org.springframework.web.servlet.HandlerMapping=org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,\</span><br><span class="line">4org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping,\</span><br><span class="line">4org.springframework.web.servlet.function.support.RouterFunctionMapping</span><br><span class="line"></span><br><span class="line">org.springframework.web.servlet.HandlerAdapter=org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,\</span><br><span class="line">4org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,\</span><br><span class="line">4org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter,\</span><br><span class="line">4org.springframework.web.servlet.function.support.HandlerFunctionAdapter</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">org.springframework.web.servlet.HandlerExceptionResolver=org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver,\</span><br><span class="line">4org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver,\</span><br><span class="line">4org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver</span><br><span class="line"></span><br><span class="line">org.springframework.web.servlet.RequestToViewNameTranslator=org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator</span><br><span class="line"></span><br><span class="line">org.springframework.web.servlet.ViewResolver=org.springframework.web.servlet.view.InternalResourceViewResolver</span><br><span class="line"></span><br><span class="line">org.springframework.web.servlet.FlashMapManager=org.springframework.web.servlet.support.SessionFlashMapManager</span><br></pre></td></tr></table></figure><h1 id="doservice"><a class="markdownIt-Anchor" href="#doservice"></a> doService</h1><ul><li>配置 WebApplicationContext</li><li>配置 locale</li><li>配置 theme</li><li>配置 theme resource</li><li>DispatcherServlet 的 flashMapManager 不为空，则为 request 设置 flashMapManager</li><li>doDispatch</li></ul><h1 id="dodispatch"><a class="markdownIt-Anchor" href="#dodispatch"></a> doDispatch</h1><ul><li>检查请求是否是 multipart 类型（上传文件），是则进行转化</li><li>获取 request 的 handler</li><li>由 handler 获取 HandlerAdapter</li><li>modify 检查 返回 304</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> spring </category>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> spring-mvc </tag>
+            
+            <tag> spring-webmvc </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>攀登者电影</title>
+      <link href="/2019/10/09/2019-10-01-climber/"/>
+      <url>/2019/10/09/2019-10-01-climber/</url>
+      
+        <content type="html"><![CDATA[<p>剧情介绍不剧透那种，主要讲的是一行人历经险阻<code>两次</code>登上珠穆朗玛峰的故事。<br>看这部电影最大原因还是因为吴京，毕竟之前的流浪地球太火爆了。</p><h1 id="为什么要登山"><a class="markdownIt-Anchor" href="#为什么要登山"></a> 为什么要登山</h1><ol><li>开篇有背景介绍，珠峰在和邻国边境上有争议，而且邻国已经在南边登顶了，我们需要登上自己的山。这登顶成功一行为还是极具历史意义的。</li><li>人类总是要面向未来的，高山海底、宇宙，任何未知的东西都吸引着我们去探索（忘了原话了）</li></ol><p>对于第二点还是很有感触的，在学校有邓小平同志的标语</p><blockquote><p>面向现代化，面向世界，面向未来</p></blockquote><p>此刻便觉得伟人的伟大之处。人类是向前发展壮大的，少不了这种攀登顶峰的精神，少不了教育的支撑。</p><h1 id="一些片段"><a class="markdownIt-Anchor" href="#一些片段"></a> 一些片段</h1><p>方五洲为徐缨挡落石，男友力max，他们整个的感情戏还是很混乱的</p><p>方五洲3兄弟的情谊后来关系发生变化，还是让我有点惊讶的，后来曲松林由保摄影机到保人这个态度转变，<br>到后来的畏畏缩缩(徐缨提出还有窗口期可以攀登的时候)，这些都主要突出了主角决断的正确性。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> movie </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 攀登者 </tag>
+            
+            <tag> 吴京 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>innodb 最佳实践</title>
+      <link href="/2019/10/09/2019-09-24-innodb-table/"/>
+      <url>/2019/10/09/2019-09-24-innodb-table/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html" target="_blank" rel="noopener">官方英文链接</a></p><ul><li>设置表中常用的一个列或者多个列为主键。没有用自增id做为主键。</li><li>有相同id的表使用联表查询。使用数据结构相同的外键提高性能，保持数据完整性（外键能起到关联更新和删除的作用，防止在子表中插入父表中没有的数据）。</li><li>关闭自动提交。每秒上百次提交影响性能（这取决于存储设备的性能）。</li><li>批量数据库DML（Data manipulation language，增删改）操作使用事务。</li><li>不使用表锁 <code>LOCK TABLES</code> 。innodb有行级锁，能够提高性能、保证数据完整。<code>SELECT ... FOR UPDATE</code></li><li>启用<code>innodb_file_per_table</code>（默认已启用） 或者通用的表空间存放数据和索引到单独的文件中，替换系统的表空间</li><li>自行判断使用 innodb 表压缩功能</li><li>启动服务时配置  <code>--sql_mode=NO_ENGINE_SUBSTITUTION</code> ，防止创建其他储存引擎的表</li></ul><p>注：<br><strong>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过再数据块中，对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，innoDB才使用行级锁，否则InnoDB将使用表锁，在实际开发中应当注意</strong><br>来源：<a href="https://www.cnblogs.com/fuwentao/p/7354145.html" target="_blank" rel="noopener">https://www.cnblogs.com/fuwentao/p/7354145.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> innodb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>穷爸爸富爸爸</title>
+      <link href="/2019/10/09/2019-10-05-rich-father/"/>
+      <url>/2019/10/09/2019-10-05-rich-father/</url>
+      
+        <content type="html"><![CDATA[<p>为企业老板打工，出售自己的个人时间和技能，然后为郭嘉贡献税收，贷款买房又为银行创造收益。</p><p>（首套）房子不是资产，在贷款购买首套房的情况下，你需要每月支付钱，甚至直到30年后才有房子的所有权。这构成了每月的必须支出项，这样缺少了更多的现金去购置资产。<br>作者认为能带来现金流的房子才是资产，需要考虑的是租金收入，未来增值等多个问题，是否合适</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">富人购买资产</span><br><span class="line">穷人购买负债</span><br><span class="line">中产阶级购买自以为资产的负债</span><br></pre></td></tr></table></figure><h1 id="43-关注自己的事业"><a class="markdownIt-Anchor" href="#43-关注自己的事业"></a> 4.3 关注自己的事业</h1><blockquote><p>学校的问题在于你在哪里学到了什么就会从事什么。如果你学到的是烹饪，你就会成为一名厨师；如果学的是法律，就是成为律师。</p></blockquote><p>ps：大部分人是如此按部就班的活下去，却忘记了自己的梦想或者说是初心。</p><blockquote><p>事业的重心是你的资产项，而不是收入项</p></blockquote><p>所以在从事工作的时候，更加关注个人成长性。在没有成长性的时候，及时止损。</p><p>作者的资产分类：</p><ol><li>不需要到场就能正常运作的业务</li><li>股票</li><li>债券</li><li>共同基金</li><li>能产生收入的房地产</li><li>票据（借据）(但是更多的是收不回来，成为了损失)</li><li>版税，如音乐、手稿</li><li>有价值有销路的东西</li></ol><h1 id="税收的历史"><a class="markdownIt-Anchor" href="#税收的历史"></a> 税收的历史</h1><p>最初的设计是为了向富人征收，但目前实际上是对穷人的征收得更多，富人有自己得避税手段，比如1元年薪等。<br>还说了很多政府不好的话，居然在我国没被禁，哈哈哈。作者说政府会对个人所得税收的胃口越来越大，从富人到中产甚至穷人都要征收。</p><p>不过我国个人所得税已经调整了起征点和税率，点赞！</p><p>作者认为的财商构成：</p><ul><li>会计，财务知识。需要看懂公司的财务报表，判断一项生意的优势劣势</li><li>投资，涉及策略和方案</li><li>了解市场，供求关系和基本面</li><li>法律，开企业的时候了解减税等政策优惠、诉讼中得到保护</li></ul><p>我现在觉得ofo居然可以挪用押金，还有700w人没有退押金，这样的操作相关都能不受到惩罚，而且在偿还的时候，ofo先偿还了他和其他企业（提供自行车的）的欠款，有关部门只是发了声明说押金得退。我不懂法律，感觉懂法律的话能让自己的资金更加安全又保障。</p><h1 id="富人的投资"><a class="markdownIt-Anchor" href="#富人的投资"></a> 富人的投资</h1><p>拥有理财能力，便拥有了更多的选择机会。</p><p>金钱不是资产，是共同认可的东西。我们最重要的资产是头脑。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 投资 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 穷爸爸富爸爸 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo-leancloud-counter-security 配置</title>
+      <link href="/2019/10/09/2019-10-08-hexo-leancloud-counter-security/"/>
+      <url>/2019/10/09/2019-10-08-hexo-leancloud-counter-security/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-leancloud-counter-security --save</span><br><span class="line">npm install babel-runtime --save</span><br></pre></td></tr></table></figure><p>hexo-leancloud-counter-security 依赖 babel-runtime 模块</p><p>还需要在项目的配置文件 _config.yml 中设置 (而不是主题 next 中配置文件中)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">leancloud_counter_security:</span><br><span class="line">  enable_sync: true</span><br></pre></td></tr></table></figure><h1 id="错误"><a class="markdownIt-Anchor" href="#错误"></a> 错误</h1><h2 id="error-cannot-find-module-babel-runtimeregenerator"><a class="markdownIt-Anchor" href="#error-cannot-find-module-babel-runtimeregenerator"></a> Error: Cannot find module ‘babel-runtime/regenerator’</h2><p>少安装了依赖 babel-runtime</p><h2 id="typeerror-cannot-read-property-enable_sync-of-undefined"><a class="markdownIt-Anchor" href="#typeerror-cannot-read-property-enable_sync-of-undefined"></a> TypeError: Cannot read property ‘enable_sync’ of undefined</h2><p>未配置 enable_sync</p><h1 id="最后"><a class="markdownIt-Anchor" href="#最后"></a> 最后</h1><p>我总感觉 leancloud不太稳，如果是展示访问人数，我还是推荐不蒜子，直接启用就好使</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true</span><br><span class="line">  total_visitors_icon: user</span><br><span class="line">  total_views: true</span><br><span class="line">  total_views_icon: eye</span><br><span class="line">  post_views: true</span><br><span class="line">  post_views_icon: eye</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo-leancloud-counter-security </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>innodb 缓冲池</title>
+      <link href="/2019/09/24/2019-09-24-innodb-buffer-pool/"/>
+      <url>/2019/09/24/2019-09-24-innodb-buffer-pool/</url>
+      
+        <content type="html"><![CDATA[<p>1缓冲池是在内存中用于存放表和索引的一块区域。直接在内存中获取常用数据。在专有数据库中通常分配<code>80%</code>的物理内存给缓冲池。<br>为了提高大量的读操作，缓冲池分为多个页，每页可能包含多行数据。缓冲池通过实现一种<code>linked list</code>来管理缓存中的页。使用一种变体的LRU算法的移出低效数据。</p><p>了解如何利用缓冲池将经常访问的数据保留在内存中是MySQL优化的重要手段</p><h1 id="缓冲池的lru算法"><a class="markdownIt-Anchor" href="#缓冲池的lru算法"></a> 缓冲池的LRU算法</h1><p>缓冲池由变体的LRU算法管理。当有新的页面需要加入到缓冲池中时，移除最近最少使用的页面，将新页面加入到<code>linked list</code>的中点(从后面来看，并不是完全的中点)。中点将list分为两部分：</p><ul><li>头部分到中点的子列表是表示最近常用的 yong 页面</li><li>尾部分到中点的子列表是表示最近不常用的 old 页面</li></ul><h2 id="算法示意图"><a class="markdownIt-Anchor" href="#算法示意图"></a> 算法示意图</h2><p><img src="https://dev.mysql.com/doc/refman/5.7/en/images/innodb-buffer-pool-list.png" alt="list 示意图"></p><p>算法将大量页面保留到新子列表中，旧子列表包含的是较少使用的待移除的页。<br>默认算法操作如下：</p><ul><li>3/8的缓冲池是待删除的旧子列表</li><li>列表的中点是新子列表的尾部与旧子列表的头相交的边界</li><li>innodb 读取新的页面到缓冲池列表中，将旧的中点作为旧子列表的头部。页面可以由用户的sql或者innodb的预读<sup>[1]</sup>操作查到。</li><li>获取旧列表中的页面可以将该页由旧转新，该页面会被移动到新子列表的头部。用户操作的情况下，首次访问页面会设置为young。mysql自己的预读操作，首次访问可能直到页面移出缓存都不会发生。</li><li>对于数据库的操作，页面未访问将会移到列表尾部。列表中的页面都能变 young。旧列表的页面会插入到中点，最后，如果页面没有使用的，会移动到就列表的尾部，然后移除。</li></ul><p>默认，查询出的页面会立刻移动到新子列表，意味着待在缓冲池的时间更长。整个表扫描（mysqldump或者select不加where的查询）造成大量数据页加入到缓冲池中，旧列表页也会有等量的页面移出，即使新数据再也没有使用。同样，由预读后台线程加载且仅访问一次的页面将移到新列表的开头。这些情况可能会将常用页面推到旧列表。</p><p>innodb 标准监听的输出包含这结果部分</p><h1 id="缓冲池配置"><a class="markdownIt-Anchor" href="#缓冲池配置"></a> 缓冲池配置</h1><p>可以通过一下几点配置缓冲池来提高性能</p><ul><li>理想情况下，为其他进程分配足够的内存后，为缓冲池分配剩下的内存，这样可以避免频繁分页操作。缓冲池足够大，innodb 更像一个基于内存的数据库。</li><li>在具有足够内存的64位系统上，可以将缓冲池分成多个部分，以最大程度地减少并发操作之间争用。</li><li>将频繁访问的数据保留在内存中，拒绝全表扫描<sup>[2]</sup>。</li><li>自行配置预读操作，判断某些页面将要使用</li><li>配置后台刷新。控制后台刷新的时间，根据负载情况调整刷新频率</li><li>配置保存缓冲池，重启时保留之前的缓冲池</li></ul><h1 id="查看innodb标准监听器"><a class="markdownIt-Anchor" href="#查看innodb标准监听器"></a> 查看innodb标准监听器</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">ENGINE</span> <span class="keyword">INNODB</span> <span class="keyword">STATUS</span></span><br></pre></td></tr></table></figure><p>缓冲池指标位于InnoDB Standard Monitor输出的BUFFER POOL AND MEMORY部分中，并且看起来类似于以下内容</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">----------------------</span></span><br><span class="line">BUFFER POOL AND MEMORY</span><br><span class="line"><span class="comment">----------------------</span></span><br><span class="line">Total large memory allocated 2198863872</span><br><span class="line">Dictionary memory allocated 776332</span><br><span class="line">Buffer pool size   131072</span><br><span class="line">Free buffers       124908</span><br><span class="line">Database pages     5720</span><br><span class="line">Old database pages 2071</span><br><span class="line">Modified db pages  910</span><br><span class="line">Pending reads 0</span><br><span class="line">Pending writes: LRU 0, <span class="keyword">flush</span> <span class="keyword">list</span> <span class="number">0</span>, single page <span class="number">0</span></span><br><span class="line">Pages made young <span class="number">4</span>, <span class="keyword">not</span> young <span class="number">0</span></span><br><span class="line"><span class="number">0.10</span> youngs/s, <span class="number">0.00</span> non-youngs/s</span><br><span class="line">Pages <span class="keyword">read</span> <span class="number">197</span>, created <span class="number">5523</span>, written <span class="number">5060</span></span><br><span class="line"><span class="number">0.00</span> <span class="keyword">reads</span>/s, <span class="number">190.89</span> creates/s, <span class="number">244.94</span> writes/s</span><br><span class="line">Buffer pool hit rate <span class="number">1000</span> / <span class="number">1000</span>, young-making rate <span class="number">0</span> / <span class="number">1000</span> <span class="keyword">not</span></span><br><span class="line"><span class="number">0</span> / <span class="number">1000</span></span><br><span class="line">Pages <span class="keyword">read</span> ahead <span class="number">0.00</span>/s, evicted <span class="keyword">without</span> <span class="keyword">access</span> <span class="number">0.00</span>/s, Random <span class="keyword">read</span></span><br><span class="line">ahead <span class="number">0.00</span>/s</span><br><span class="line">LRU <span class="keyword">len</span>: <span class="number">5720</span>, unzip_LRU <span class="keyword">len</span>: <span class="number">0</span></span><br><span class="line">I/O <span class="keyword">sum</span>[<span class="number">0</span>]:cur[<span class="number">0</span>], unzip <span class="keyword">sum</span>[<span class="number">0</span>]:cur[<span class="number">0</span>]</span><br></pre></td></tr></table></figure><blockquote><p>注意⚠️：Per second averages 基于上次输出的时间</p></blockquote><h2 id="表142-innodb缓冲池指标"><a class="markdownIt-Anchor" href="#表142-innodb缓冲池指标"></a> 表14.2 InnoDB缓冲池指标</h2><table><thead><tr><th>指标</th><th>解释</th></tr></thead><tbody><tr><td>Total memory allocated</td><td>缓冲池分配的内存，单位 byte</td></tr><tr><td>Dictionary memory allocated</td><td>innodb 字段内存，单位byte</td></tr><tr><td>Buffer pool size</td><td>页面大小，byte</td></tr><tr><td>Free buffers</td><td>缓冲池空闲列表的页面总大小</td></tr><tr><td>Database pages</td><td>缓冲池LRU列表的页面总大小</td></tr><tr><td>Old database pages</td><td>缓冲池LRU旧子列表的页面总大小</td></tr><tr><td>Modified db pages</td><td>缓冲池中当前修改的页面数</td></tr><tr><td>Pending reads</td><td>等待读入缓冲池的缓冲池页面数</td></tr><tr><td>Pending writes LRU</td><td>从LRU列表的底部开始写入的缓冲池中的旧脏页数</td></tr><tr><td>Pending writes flush list</td><td>检查点期间要刷新的缓冲池页面数。</td></tr><tr><td>Pending writes single page</td><td>缓冲池中暂挂的独立页面写入数</td></tr><tr><td>Pages made young</td><td>缓冲池LRU列表中变年轻的页面总数（移至“新”页面的子列表的开头）</td></tr><tr><td>Pages made not young</td><td>缓冲池LRU列表中没有年轻的页面总数（保留在“旧”子列表中但没有年轻的页面）</td></tr><tr><td>youngs/s</td><td>每秒平均访问缓冲池LRU列表中的旧页面所导致的页面年轻</td></tr><tr><td>non-youngs/s</td><td>每秒平均访问缓冲池LRU列表中的旧页面导致的页面不年轻。</td></tr><tr><td>Pages read</td><td>从缓冲池读取的页面总数</td></tr><tr><td>Pages created</td><td>在缓冲池中创建的页面总数</td></tr><tr><td>Pages written</td><td>从缓冲池写入的页面总数</td></tr><tr><td>···</td><td>···省略</td></tr></tbody></table><hr>参考链接<ol><li><a href="https://dev.mysql.com/doc/refman/5.7/en/glossary.html#read-ahead" target="_blank" rel="noopener">预读</a></li><li><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-performance-midpoint_insertion.html" target="_blank" rel="noopener">扫表优化</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> innodb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>innodb 中文简介</title>
+      <link href="/2019/09/23/2019-09-23-innodb-introduction/"/>
+      <url>/2019/09/23/2019-09-23-innodb-introduction/</url>
+      
+        <content type="html"><![CDATA[<p>innodb 是一款兼顾高可用和高性能的通用存储引擎。mysql 5.<br>7 版本作为默认的存储引擎。可以修改默认的存储引擎或者在创建表的时候指定存储引擎。<br><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-introduction.html" target="_blank" rel="noopener">英文原文链接</a></p><h1 id="核心优势"><a class="markdownIt-Anchor" href="#核心优势"></a> 核心优势</h1><ul><li>DML(数据库增删改查)支持 ACID模型,通过事务、事故恢复等保护数据</li><li>行级锁和oracle级别的一致性读取提高并发性能</li><li>数据按主键进行排序优化，innodb 主键是聚簇索引可以减少io读写次数，优化查询性能</li><li>支持外键，用于维护数据的完整性。外键的增删改，会确保在不同表之间的一致性</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> innodb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>阿里巴巴 java 手册</title>
+      <link href="/2019/09/10/2019-09-10-alibaba-java-manual/"/>
+      <url>/2019/09/10/2019-09-10-alibaba-java-manual/</url>
+      
+        <content type="html"><![CDATA[<h2 id="所有的相同类型的包装类对象之间值的比较全部使用-equals-方法比较"><a class="markdownIt-Anchor" href="#所有的相同类型的包装类对象之间值的比较全部使用-equals-方法比较"></a> 所有的相同类型的包装类对象之间值的比较，全部使用 equals 方法比较。</h2><p>说明:对于 Integer var = ? 在-128 至 127 范围内的赋值，Integer 对象是在 IntegerCache.cache 产生，会复用已有对象，这个区间内的 Integer 值可以直接使用==进行 判断，但是这个区间之外的所有数据，都会在堆上产生，并不会复用已有对象，这是一个大坑， 推荐使用 equals 方法进行判断。<br>这块是之前学习装箱（包装）和拆箱时需要注意的点，用equals可以解决这个问题，因为对象 = 比较时，比较的是引用是否指向同一个对象。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 阿里巴巴 </tag>
+            
+            <tag> java 手册 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>高精度计算 BigDecimal</title>
+      <link href="/2019/09/09/2019-09-09-BigDecimal/"/>
+      <url>/2019/09/09/2019-09-09-BigDecimal/</url>
+      
+        <content type="html"><![CDATA[<h2 id="实例化问题"><a class="markdownIt-Anchor" href="#实例化问题"></a> 实例化问题</h2><p>不能用double进行实例化，同样会出现精度丢失的问题</p><p>错误示例比如</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正确结果 1000.033296</span></span><br><span class="line">BigDecimal unitPrice = <span class="keyword">new</span> BigDecimal(<span class="number">1.1644</span>);</span><br><span class="line">BigDecimal count = <span class="keyword">new</span> BigDecimal(<span class="number">858.84</span>);</span><br><span class="line">System.out.println(unitPrice.multiply(count)+<span class="string">" \n "</span>+<span class="number">1.1644</span>*<span class="number">858.84</span>);</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="comment">//1000.0332960000001243302278908231560819935043394265724464066436016906891381950117647647857666015625 </span></span><br><span class="line"><span class="comment">//1000.0332960000002</span></span><br></pre></td></tr></table></figure><p>正确做法：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal unitPrice = <span class="keyword">new</span> BigDecimal(<span class="string">"1.1644"</span>);</span><br><span class="line">BigDecimal count = <span class="keyword">new</span> BigDecimal(<span class="string">"858.84"</span>);</span><br><span class="line">System.out.println(unitPrice.multiply(count)+<span class="string">" "</span>+<span class="number">1.1644</span>*<span class="number">858.84</span>);</span><br></pre></td></tr></table></figure><h2 id="基本方法"><a class="markdownIt-Anchor" href="#基本方法"></a> 基本方法</h2><ul><li>加：add</li><li>减：subtract</li><li>乘：multiply</li><li>除：divide<br>特别说明一下除法，在除不尽（无限循环或者无限不循环的时候需要设置精度，保留到多少位以及最后一位的处理方式）<br>否则会出现异常</li></ul><blockquote><p>java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result.</p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal dividend = <span class="keyword">new</span> BigDecimal(<span class="string">"1"</span>);</span><br><span class="line">BigDecimal negativeDividend = <span class="keyword">new</span> BigDecimal(<span class="string">"-1"</span>);</span><br><span class="line">BigDecimal divisor = <span class="keyword">new</span> BigDecimal(<span class="string">"6"</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(dividend.divide(divisor,<span class="number">4</span>,BigDecimal.ROUND_DOWN));</span><br><span class="line">System.out.println(dividend.divide(divisor,<span class="number">4</span>,BigDecimal.ROUND_UP));</span><br><span class="line">System.out.println(dividend.divide(divisor,<span class="number">4</span>,BigDecimal.ROUND_CEILING));</span><br><span class="line">System.out.println(negativeDividend.divide(divisor,<span class="number">4</span>,BigDecimal.ROUND_CEILING));</span><br><span class="line">System.out.println(dividend.divide(divisor,<span class="number">4</span>,BigDecimal.ROUND_FLOOR));</span><br><span class="line">System.out.println(negativeDividend.divide(divisor,<span class="number">4</span>,BigDecimal.ROUND_FLOOR));</span><br></pre></td></tr></table></figure><table><thead><tr><th>原来值</th><th>模式</th><th>结果</th></tr></thead><tbody><tr><td>1.666666</td><td>ROUND_DOWN (舍弃后面的)</td><td>1.6666</td></tr><tr><td>1.666600001</td><td>ROUND_UP (后面任意位有数直接进)</td><td>1.6667</td></tr><tr><td>1.666666</td><td>ROUND_CEILING （结果为正数，效果同ROUND_UP）</td><td>1.6667</td></tr><tr><td>-1.666666</td><td>ROUND_CEILING （结果为负数，效果同ROUND_DOWN）</td><td>-1.6666</td></tr><tr><td>1.666666</td><td>ROUND_FLOOR （结果为正数，效果同ROUND_DOWN）</td><td>1.6666</td></tr><tr><td>-1.666666</td><td>ROUND_FLOOR （结果为负数，效果同ROUND_UP）</td><td>-1.6667</td></tr></tbody></table><p>//其他的待补充 懒了 四舍五入之类的</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>投资最重要的事 阅读总结</title>
+      <link href="/2019/09/05/2019-09-05-risk/"/>
+      <url>/2019/09/05/2019-09-05-risk/</url>
+      
+        <content type="html"><![CDATA[<h1 id="风险定义"><a class="markdownIt-Anchor" href="#风险定义"></a> 风险定义</h1><blockquote><p>对未来结果的不确定性，以及不利结果的损失不确定性</p></blockquote><h2 id="风险行为"><a class="markdownIt-Anchor" href="#风险行为"></a> 风险行为</h2><ol><li>心理预期过于乐观</li><li>错误估计目标的价值</li></ol><blockquote><p>随机漫步的傻瓜</p></blockquote><p>这一本书提到人们经常将偶然的成功事件归为必然，那么偶然的成功人士的经验不可信<br>在风险问题上，风险只要存在，根据随机性那么必然会发生</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 投资 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 风险 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>rocketmq 资料整理</title>
+      <link href="/2019/09/02/2019-09-02-rocketmq-doc/"/>
+      <url>/2019/09/02/2019-09-02-rocketmq-doc/</url>
+      
+        <content type="html"><![CDATA[<h2 id="中文官网"><a class="markdownIt-Anchor" href="#中文官网"></a> 中文官网：</h2><p><a href="http://rocketmq.cloud/zh-cn" target="_blank" rel="noopener">http://rocketmq.cloud/zh-cn</a></p><h2 id="源码地址"><a class="markdownIt-Anchor" href="#源码地址"></a> 源码地址</h2><p><a href="https://github.com/apache/rocketmq" target="_blank" rel="noopener">https://github.com/apache/rocketmq</a></p><h2 id="web-console项目console-ng"><a class="markdownIt-Anchor" href="#web-console项目console-ng"></a> web console项目(console-ng)</h2><p><a href="https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console" target="_blank" rel="noopener">https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console</a></p><p><img src="https://upload-images.jianshu.io/upload_images/6318820-3393cdbb1000aae4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><h2 id="spring-boot-整合"><a class="markdownIt-Anchor" href="#spring-boot-整合"></a> spring boot 整合</h2><h3 id="github"><a class="markdownIt-Anchor" href="#github"></a> github</h3><h4 id="demo"><a class="markdownIt-Anchor" href="#demo"></a> demo</h4><p><a href="https://github.com/apache/rocketmq-spring" target="_blank" rel="noopener">https://github.com/apache/rocketmq-spring</a></p><h4 id="文档"><a class="markdownIt-Anchor" href="#文档"></a> 文档</h4><p><a href="https://github.com/apache/rocketmq-spring/blob/master/README_zh_CN.md" target="_blank" rel="noopener">https://github.com/apache/rocketmq-spring/blob/master/README_zh_CN.md</a></p><p>maven 配置：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.rocketmq&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;rocketmq-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 消息队列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> rocketmq </tag>
+            
+            <tag> spring-boot </tag>
+            
+            <tag> doc </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mysql 时间类型文档翻译</title>
+      <link href="/2019/07/25/2019-07-25-mysql-date-type/"/>
+      <url>/2019/07/25/2019-07-25-mysql-date-type/</url>
+      
+        <content type="html"><![CDATA[<p>date、datatime、timestamp 都是时间类型，这部分内容将介绍它们的特点，相似和不同。Mysql 识别date、datetime、timestamp的值按以下<a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html" target="_blank" rel="noopener">几种方式格式化</a>。对于 date 和 datetime类型，“supported” 意味着可能支持早期的值，但是不保证。</p><p>date 类型只有date（年月日）部分，没有time（时分秒）部分。Mysql以 “YYYY-MM-DD” 格式取出展示date类型数据。数据范围 从’1000-01-01’ 到 ‘9999-12-31’。</p><p>datetime 类型同时包含了date（年月日）部分和time（时分秒）部分。Mysql以 “YYYY-MM-DD hh:mm:ss” 格式取出展示datetime类型数据。数据范围从 ‘1000-01-01 00:00:00’ 到 ‘9999-12-31 23:59:59’。</p><p>TIMESTAMP 数据类型同时包含了date和time部分。 数据范围从 ‘1970-01-01 00:00:01’ UTC 到 ‘2038-01-19 03:14:07’ UTC.</p><p>datetime 和 timestamp 后有六位数的精度（微秒），例如datetime 的精度范围是 ‘1000-01-01 00:00:00.000000’ 到 ‘9999-12-31 23:59:59.999999’。</p><p>datetime 和 timestamp 可以根据当前时间进行初始化和更新。<a href="https://dev.mysql.com/doc/refman/8.0/en/timestamp-initialization.html" target="_blank" rel="noopener">详情点击</a></p><p>个人补充例如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`created_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT &apos;创建时间戳&apos;</span><br></pre></td></tr></table></figure><p>Mysql 将 timestamp 从当前时区转到UTC 进行存储，然后从 UTC 取出转为当前时区（这种情况不会出现在其他时间类型中，比如 datatime）。默认，每个mysql连接的当前时区是服务器的时区，也可以自定义时区。只要设置的时区不变，设置和取出的timestamp就是一致的。如果你存储timetamp值，再修改时区，那设置值和取出值就不一致了。</p><p>非法的 date、datetime、timestamp会转化为 0 比如’0000-00-00’ 或  ‘0000-00-00 00:00:00’。</p><p>时间类型的注意事项</p><ul><li>Mysql 为字符串转为时间类型提供一个宽松的格式转化。在 data 或者 time部分，字符串的任意标点都可能作为时间的分割。某些情况下，这样的语法存在问题。比如，因为 ‘:’，'10:11:12’看起来是一个time类型。</li><li>限制月和日必须是合法的，而不仅仅是 1-12和1-31。特别是，取消了strict 模式，非法的值，比如’2004-04-31’ 将被转为’0000-00-00’同时抛出警告；strict 模式时，非法的值将会报错。允许这种值，需要启用 ALLOW_INVALID_DATES，详情见 <a href="https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html" target="_blank" rel="noopener">5.1.11</a> 部分</li><li>timestamp 不允许 日和月为0，或者其他非法的日期。这种特殊情况将处理零值 ‘0000-00-00 00:00:00’</li><li>日期中用两位数字代表的年份是不确定的，Mysql使用以下规则来处理这些情况：</li></ul><ol><li>00-69范围转化为 2000-2069</li><li>70-99 转化为 1970-1999</li></ol><p>详情请见 <a href="https://dev.mysql.com/doc/refman/8.0/en/two-digit-years.html" target="_blank" rel="noopener">11.3.7</a> 部分</p><p>个人补充说明：<br>UTC 比格林尼治天文台的时间更精准的，零时区的时间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> timestamp </tag>
+            
+            <tag> datetime </tag>
+            
+            <tag> date </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>最大子数组求解以及逐步优化</title>
+      <link href="/2019/05/31/2019-05-30-maxsubarray/"/>
+      <url>/2019/05/31/2019-05-30-maxsubarray/</url>
+      
+        <content type="html"><![CDATA[<h1 id="最大子数组求解以及逐步优化"><a class="markdownIt-Anchor" href="#最大子数组求解以及逐步优化"></a> 最大子数组求解以及逐步优化</h1><p><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="noopener">leetcode 传送门</a></p><h2 id="暴力解法"><a class="markdownIt-Anchor" href="#暴力解法"></a> 暴力解法</h2><p>求出所有子数组的和，numS[i,j]（意味着子数组 下标i到j）,所以i从0开始到数组最后一位，j从i开始到数组最后一位，算出所有的子数组和 temp，max取temp的最大值即可</p><blockquote><p>时间复杂度 O(n2)</p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArrayByForce</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; nums.length; j++) &#123;</span><br><span class="line">            temp += nums[j];</span><br><span class="line">            max = temp &gt; max ? temp : max;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="动态规划算法"><a class="markdownIt-Anchor" href="#动态规划算法"></a> 动态规划（算法）</h2><p>算法思路：用一个dp数组来记录当前位置的子数组和dp[i]，dp[i]的和依赖于dp[i-1]+nums[i]的和 sum， 1. 如果sum小于0，说明这一次的计算不符合要求，dp[i] = 0，此时相当于 dp[i+1] 需要从新计算子数组和 2. 只要sum大于0，那么 dp[i] = sum，一直往下加</p><p>而 max 最大值等于 dp[0,length) 的 最大值</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    <span class="keyword">int</span> max = nums[<span class="number">0</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">1</span>; index &lt; nums.length; index++) &#123;</span><br><span class="line">        dp[index] = nums[index] + (dp[index - <span class="number">1</span>] &gt; <span class="number">0</span> ? dp[index - <span class="number">1</span>] : <span class="number">0</span>);</span><br><span class="line">        max = dp[index] &gt; max ? dp[index] : max;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>时间复杂度 O(n) 空间复杂度 O(n)</p></blockquote><h2 id="最节省内存的动态规划"><a class="markdownIt-Anchor" href="#最节省内存的动态规划"></a> 最节省内存的动态规划</h2><p>在上面一步你可以看到，没必要使用整个dp数组来记录临时的最大值，仅仅需要的变量便是dp[i-1]（dp[i]需要dp[i-1]），这样在空间优化到了O(1)</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> temp = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">1</span>; index &lt; nums.length; index++) &#123;</span><br><span class="line">        temp = nums[index] + (temp &gt; <span class="number">0</span> ? temp : <span class="number">0</span>);</span><br><span class="line">        max = temp &gt; max ? temp : max;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>时间复杂度 O(n) 空间复杂度 O(1)</p></blockquote><p>下面的题型和最大子数组是一个类型</p><p>相关链接：股票买入卖出时间 <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener">leetcode传动门</a></p><p>todo 待补充 原算法链接</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 动态规划 </tag>
+            
+            <tag> 最大子数组 </tag>
+            
+            <tag> kanane </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>sshd Authentication refused</title>
+      <link href="/2018/12/26/2018-12-26-ssh-authentication-refused/"/>
+      <url>/2018/12/26/2018-12-26-ssh-authentication-refused/</url>
+      
+        <content type="html"><![CDATA[<h1 id="2018-12-26-ssh-authentication-refused"><a class="markdownIt-Anchor" href="#2018-12-26-ssh-authentication-refused"></a> 2018-12-26-ssh-Authentication refused</h1><p>配置相关 ssh 后还是无法免密登录，后来发现了一篇文章说是 ssh 安全问题 cat /var/log/secure</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authentication refused: bad ownership or modes <span class="keyword">for</span> directory /home/songjiang</span><br></pre></td></tr></table></figure><p>很明显这个提示说：这个文件的所有人和 modes（文件夹默认是755，文件是644） 有误，所以授权拒绝了。因为其他开发人员乱动了文件权限所以我这个文件夹变成了 777</p><p>相关命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 /home/songjiang</span><br></pre></td></tr></table></figure><p>把用户目录 /home/songjiang 改为 755 后，却出现无法访问的问题。原来里面有不属于我的文件且无法读取，删除或者chmod一下就好</p><p>另外 .ssh 文件夹下modes 如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 songjiang dev  397 Dec 24 20:20 authorized_keys</span><br><span class="line">-rw------- 1 songjiang dev 1671 Dec 24 20:02 id_rsa</span><br><span class="line">-rw-r--r-- 1 songjiang dev  413 Dec 24 20:02 id_rsa.pub</span><br><span class="line">-rw-r--r-- 1 songjiang dev    0 Dec 24 20:20 known_hosts</span><br></pre></td></tr></table></figure><p>ps:吐槽一下，乱改文件权限真的烦</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ssh </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ssh </tag>
+            
+            <tag> 免密登录 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>字符串和切片</title>
+      <link href="/2018/12/26/2019-01-22-string-and-slice/"/>
+      <url>/2018/12/26/2019-01-22-string-and-slice/</url>
+      
+        <content type="html"><![CDATA[<h1 id="2019-01-22-string-and-slice"><a class="markdownIt-Anchor" href="#2019-01-22-string-and-slice"></a> 2019-01-22-string-and-slice</h1><p>在 go 中字符串属于不可变类型，对字符串的修改会报错</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str :=<span class="string">"hello world"</span></span><br><span class="line">str[<span class="number">0</span>] = <span class="string">"A"</span></span><br><span class="line"><span class="comment">//输出 cannot assign to str[0]</span></span><br></pre></td></tr></table></figure><p>所以所有对字符串的修改必须转化为切片（slice）, 对切片进行修改，再转为字符串</p><p>以下为示例代码</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对英文字符串，直接可以转为字节切片</span></span><br><span class="line">byteArray := []<span class="keyword">byte</span>(s)</span><br><span class="line"><span class="comment">//中文得转为 rune 类型的切片</span></span><br><span class="line">runeArray := []<span class="keyword">rune</span>(s)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> string </tag>
+            
+            <tag> slice </tag>
+            
+            <tag> 切片 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>nginx 文件配置</title>
+      <link href="/2018/12/20/2018-12-19-nginx-config/"/>
+      <url>/2018/12/20/2018-12-19-nginx-config/</url>
+      
+        <content type="html"><![CDATA[<h1 id="config-写法"><a class="markdownIt-Anchor" href="#config-写法"></a> config 写法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#user  root;</span><br><span class="line">worker_processes  1;</span><br><span class="line">#pid        logs/nginx.pid;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       8080;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    include servers/*;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>servers/myproject.conf</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name songjiang.damo.haibian-d.com;</span><br><span class="line">    root /home/songjiang/myproject/damo/haibian_damo/public;</span><br><span class="line">    charset utf-8;</span><br><span class="line">    index index.php;</span><br><span class="line">    access_log /tmp/access.log;</span><br><span class="line">    error_log /tmp/error.log;</span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri $uri/ /index.php?$uri&amp;$args;</span><br><span class="line">    &#125;</span><br><span class="line">    location ~* ^.+\.(js|ico|gif|jpg|jpeg|pdf|png|css)$ &#123;</span><br><span class="line">        expires 0;</span><br><span class="line">    &#125;</span><br><span class="line">    location ~* .*\.php$ &#123;</span><br><span class="line">        fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>同一个端口（80），不同的域名 可以匹配多个项目。</p><p>在开始处理一个HTTP请求时，Nginx会取出header头中的Host，与每个server中的 server_name进行匹配，以此决定到底由哪一个server块来处理这个请求。有可能一个Host与 多个server块中的server_name都匹配，这时就会根据匹配优先级来选择实际处理的server块。 server_name与Host的匹配优先级如下：</p><h2 id="首先选择所有字符串完全匹配的server_name如wwwtestwebcom"><a class="markdownIt-Anchor" href="#首先选择所有字符串完全匹配的server_name如wwwtestwebcom"></a> 首先选择所有字符串完全匹配的server_name，<a href="http://xn--www-eo8e.testweb.com" target="_blank" rel="noopener">如www.testweb.com</a> 。</h2><h2 id="其次选择通配符在前面的server_name如testwebcom"><a class="markdownIt-Anchor" href="#其次选择通配符在前面的server_name如testwebcom"></a> 其次选择通配符在前面的server_name，如*.testweb.com。</h2><h2 id="再次选择通配符在后面的server_name如wwwtestweb"><a class="markdownIt-Anchor" href="#再次选择通配符在后面的server_name如wwwtestweb"></a> 再次选择通配符在后面的server_name，如www.testweb.* 。</h2><h2 id="最后选择使用正则表达式才匹配的server_name如~testwebcom"><a class="markdownIt-Anchor" href="#最后选择使用正则表达式才匹配的server_name如~testwebcom"></a> 最后选择使用正则表达式才匹配的server_name，如~^.testweb.com$。</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> nginx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 文件配置 </tag>
+            
+            <tag> server </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>nginx 负载均衡</title>
+      <link href="/2018/12/18/2018-12-18-nginx-base/"/>
+      <url>/2018/12/18/2018-12-18-nginx-base/</url>
+      
+        <content type="html"><![CDATA[<h1 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> nginx</h1><h2 id="什么是nginx"><a class="markdownIt-Anchor" href="#什么是nginx"></a> 什么是nginx</h2><p>nginx是高性能的http服务器，反向代理服务器</p><p>正向代理：为客户端做代理，常见翻墙</p><p>反向代理：为服务器端做代理，常见 负载均衡</p><h3 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h3><p>推荐官方链接：<a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html" target="_blank" rel="noopener">https://nginx.org/en/docs/http/ngx_http_upstream_module.html</a></p><p>nginx配置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">upstream backend &#123;</span><br><span class="line">    server backend1.example.com       weight=5;</span><br><span class="line">    server backend2.example.com:8080;</span><br><span class="line">    server unix:/tmp/backend3;</span><br><span class="line"></span><br><span class="line">    server backup1.example.com:8080   backup;</span><br><span class="line">    server backup2.example.com:8080   backup;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://backend;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>指令详解：</p><p><strong>upstream</strong></p><p>声明一组服务。每个服务可以监听不同的端口。另外，服务可以监听 <code>tcp</code> 和 <code>unix-domain</code> socket</p><p>常见配置：</p><h4 id="轮询权重默认配置"><a class="markdownIt-Anchor" href="#轮询权重默认配置"></a> 轮询+权重(默认配置)</h4><p>可以配置权重，当有7个请求打来时，会有5个请求打在backend1上，其余两个请求分别打到剩余的服务上。</p><blockquote><p>好处：支持根据服务器性能分配权重</p></blockquote><h4 id="ip_hash"><a class="markdownIt-Anchor" href="#ip_hash"></a> ip_hash</h4><p>以客户端的ip地址前三位做hash运算 参考博客： <a href="https://www.cnblogs.com/xiaohuo/archive/2012/08/13/2636468.html" target="_blank" rel="noopener">博客地址</a></p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;  </span><br><span class="line">    hash = (hash * <span class="number">113</span> + iphp-&gt;addr[i]) % <span class="number">6271</span>;  <span class="comment">//iphp-&gt;addr[i]为ip的点分十进制法的第i段</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>ip以点分十进制的方式，取的ip地址前三位做hash运算，这样说明用户在同一个局域网里（可以回顾一下计算机网络）</p><blockquote><p>好处：同一个用户（ip）可以访问同一台机器，那么可以维持 <code>session</code></p></blockquote><h4 id="url_hash-第三方"><a class="markdownIt-Anchor" href="#url_hash-第三方"></a> url_hash (第三方)</h4><blockquote><p>好处：同一URL请求会打在同一台服务器上，增加缓存命中率，特别适合配合 <code>squid</code> 使用</p></blockquote><h4 id="fair-第三方"><a class="markdownIt-Anchor" href="#fair-第三方"></a> fair (第三方)</h4><p>按后端服务器的响应时间分配,响应时间短的优先分配</p><blockquote><p>好处：服务器负载更加均匀</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> nginx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 反向代理 </tag>
+            
+            <tag> 负载均衡 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

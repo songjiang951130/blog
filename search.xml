@@ -4,6 +4,52 @@
   
     
     <entry>
+      <title>spring 容器</title>
+      <link href="/2019/10/29/2019-10-29-spring-container/"/>
+      <url>/2019/10/29/2019-10-29-spring-container/</url>
+      
+        <content type="html"><![CDATA[<h1 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h1><p>ApplicationContext 代表spring容器，负责bean配置、实例化、组装。容器通过读取配置元数据对bean进行实例化、组装。元数据有xml、java注解、java代码。</p><p>ApplicationContext 有多种实现。通常在单节点系统中，容器会创建一个<code>ClassPathXmlApplicationContext</code>或<code>FileSystemXmlApplicationContext</code>对象。XML是旧版本的方式，现在推荐使用注解或者java代码的方式。</p><ul><li>基于注解配置： 在Spring2.5中有过介绍支持基于注解的配置元数据</li><li>基于Java配置： 从Spring3.0开始，由Spring JavaConfig提供的许多功能已经成为Spring框架中的核心部分。这样你可以使用Java程序而不是XML文件定义外部应用程序中的bean类。使用这些新功能，可以查看@Configuration,@Bean,@Import和@DependsOn这些注解</li></ul><p><a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-basics" target="_blank" rel="noopener">原文档链接</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> spring </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>idea 实用技巧</title>
+      <link href="/2019/10/25/2019-10-25-idea/"/>
+      <url>/2019/10/25/2019-10-25-idea/</url>
+      
+        <content type="html"><![CDATA[<h1 id="数据库表生成实体"><a class="markdownIt-Anchor" href="#数据库表生成实体"></a> <a href="https://blog.csdn.net/weixin_39568559/article/details/79609916" target="_blank" rel="noopener">数据库表生成实体</a></h1><p>十分方便将数据库里面的表转为 pojo 类。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> idea </category>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> entity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DispatcherServlet 处理流程</title>
       <link href="/2019/10/21/2019-10-21-DispatcherServlet/"/>
       <url>/2019/10/21/2019-10-21-DispatcherServlet/</url>
@@ -33,33 +79,6 @@
     
     
     <entry>
-      <title>攀登者电影</title>
-      <link href="/2019/10/09/2019-10-01-climber/"/>
-      <url>/2019/10/09/2019-10-01-climber/</url>
-      
-        <content type="html"><![CDATA[<p>剧情介绍不剧透那种，主要讲的是一行人历经险阻<code>两次</code>登上珠穆朗玛峰的故事。<br>看这部电影最大原因还是因为吴京，毕竟之前的流浪地球太火爆了。</p><h1 id="为什么要登山"><a class="markdownIt-Anchor" href="#为什么要登山"></a> 为什么要登山</h1><ol><li>开篇有背景介绍，珠峰在和邻国边境上有争议，而且邻国已经在南边登顶了，我们需要登上自己的山。这登顶成功一行为还是极具历史意义的。</li><li>人类总是要面向未来的，高山海底、宇宙，任何未知的东西都吸引着我们去探索（忘了原话了）</li></ol><p>对于第二点还是很有感触的，在学校有邓小平同志的标语</p><blockquote><p>面向现代化，面向世界，面向未来</p></blockquote><p>此刻便觉得伟人的伟大之处。人类是向前发展壮大的，少不了这种攀登顶峰的精神，少不了教育的支撑。</p><h1 id="一些片段"><a class="markdownIt-Anchor" href="#一些片段"></a> 一些片段</h1><p>方五洲为徐缨挡落石，男友力max，他们整个的感情戏还是很混乱的</p><p>方五洲3兄弟的情谊后来关系发生变化，还是让我有点惊讶的，后来曲松林由保摄影机到保人这个态度转变，<br>到后来的畏畏缩缩(徐缨提出还有窗口期可以攀登的时候)，这些都主要突出了主角决断的正确性。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> movie </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 攀登者 </tag>
-            
-            <tag> 吴京 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>innodb 最佳实践</title>
       <link href="/2019/10/09/2019-09-24-innodb-table/"/>
       <url>/2019/10/09/2019-09-24-innodb-table/</url>
@@ -79,6 +98,33 @@
             <tag> mysql </tag>
             
             <tag> innodb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>攀登者电影</title>
+      <link href="/2019/10/09/2019-10-01-climber/"/>
+      <url>/2019/10/09/2019-10-01-climber/</url>
+      
+        <content type="html"><![CDATA[<p>剧情介绍不剧透那种，主要讲的是一行人历经险阻<code>两次</code>登上珠穆朗玛峰的故事。<br>看这部电影最大原因还是因为吴京，毕竟之前的流浪地球太火爆了。</p><h1 id="为什么要登山"><a class="markdownIt-Anchor" href="#为什么要登山"></a> 为什么要登山</h1><ol><li>开篇有背景介绍，珠峰在和邻国边境上有争议，而且邻国已经在南边登顶了，我们需要登上自己的山。这登顶成功一行为还是极具历史意义的。</li><li>人类总是要面向未来的，高山海底、宇宙，任何未知的东西都吸引着我们去探索（忘了原话了）</li></ol><p>对于第二点还是很有感触的，在学校有邓小平同志的标语</p><blockquote><p>面向现代化，面向世界，面向未来</p></blockquote><p>此刻便觉得伟人的伟大之处。人类是向前发展壮大的，少不了这种攀登顶峰的精神，少不了教育的支撑。</p><h1 id="一些片段"><a class="markdownIt-Anchor" href="#一些片段"></a> 一些片段</h1><p>方五洲为徐缨挡落石，男友力max，他们整个的感情戏还是很混乱的</p><p>方五洲3兄弟的情谊后来关系发生变化，还是让我有点惊讶的，后来曲松林由保摄影机到保人这个态度转变，<br>到后来的畏畏缩缩(徐缨提出还有窗口期可以攀登的时候)，这些都主要突出了主角决断的正确性。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> movie </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 攀登者 </tag>
+            
+            <tag> 吴京 </tag>
             
         </tags>
       

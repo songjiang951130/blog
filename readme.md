@@ -3,6 +3,7 @@
 ```
 //下载主题 next
 git clone https://github.com/theme-next/hexo-theme-next themes/next
+override: true
 //下载无后端的评论系统 valine
 npm install leancloud-storage --save
 npm install valine --save
@@ -20,6 +21,8 @@ npm install hexo-generator-category --save
 npm uninstall --save hexo-renderer-marked
 npm install hexo-renderer-markdown-it-plus
 ```
+next 配置文件 themes/next/_config.yml 修改 override: true
+
 # 运行
 ```
 hexo server

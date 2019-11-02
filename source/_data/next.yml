@@ -772,7 +772,8 @@ busuanzi_count:
   post_views_icon: eye
 
 # Tencent analytics
-tencent_analytics: 66476440 # <app_id>
+# too slow close it
+tencent_analytics: #66476440 # <app_id>
 
 # Tencent MTA
 tencent_mta: # <app_id>
@@ -1007,6 +1008,9 @@ vendors:
   # lazyload: //cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js
   # lazyload: //cdnjs.cloudflare.com/ajax/libs/lozad.js/1.9.0/lozad.min.js
   lazyload:
+    enable: true
+    onlypost: false
+    loadingImg: /images/loading.gif
 
   # Pangu
   # Example:

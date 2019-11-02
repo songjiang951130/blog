@@ -20,6 +20,8 @@ npm install hexo-generator-category --save
 //移除默认的markdown
 npm uninstall --save hexo-renderer-marked
 npm install hexo-renderer-markdown-it-plus
+//图片懒加载
+npm install hexo-lazyload-image --save
 ```
 next 配置文件 themes/next/_config.yml 修改 override: true
 

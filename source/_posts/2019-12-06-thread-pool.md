@@ -51,8 +51,42 @@ corePoolSize == maximumPoolSize，即为固定的线程数
 ### defaultThreadFactory
 设置了每个线程的名字，优先级，非后台线程
 ```
-name = "pool-" + poolNumber.getAndIncrement() + "-thread-"+threadNumber.getAndIncrement();
+name = "pool-" + poolNumber.getAndIncrement() + "-thread-" + threadNumber.getAndIncrement();
 ```
 
 ### BlockingQueue
 阻塞队列用于存放待执行的Runnable任务
+
+## 线程池如何实现线程复用的
+1. 首先利用原子```AtomicInteger ctl```限制了最大线程数
+2. Work 是任务类，启动后执行方法
+
+基本用法：
+```
+```
+
+
+execute部分源码
+```
+ public void execute(Runnable command) {
+        //获取现在核心的并发数
+        int c = ctl.get();
+        if (workerCountOf(c) < corePoolSize) {
+            //小于核心数直接添加为核心任务
+            if (addWorker(command, true))
+                return;
+            c = ctl.get();
+        }
+        //任务成功入队之后，还需要double-check(因为期间可能线程已死或者进入方法后线程池shutdown)
+        if (isRunning(c) && workQueue.offer(command)) {
+            int recheck = ctl.get();
+            if (! isRunning(recheck) && remove(command))
+                reject(command);
+            //线程死掉（过期之类的），此时新建一个线程
+            else if (workerCountOf(recheck) == 0)
+                addWorker(null, false);
+        }
+        else if (!addWorker(command, false))
+            reject(command);
+    }
+```

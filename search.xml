@@ -4,6 +4,91 @@
   
     
     <entry>
+      <title>java 线程池介绍</title>
+      <link href="/2019/12/06/2019-12-06-thread-pool/"/>
+      <url>/2019/12/06/2019-12-06-thread-pool/</url>
+      
+        <content type="html"><![CDATA[<h2 id="threadpoolexecutor"><a class="markdownIt-Anchor" href="#threadpoolexecutor"></a> ThreadPoolExecutor</h2><p>java 1.5 提供的线程池，池化思想有很多实现线程池、数据库连接池，主要是对于有限资源的利用。直接进行大量 new Thread(new Runnable) 操作时，会占用内存区域的本地栈(native stack)，甚至抛出错误 OutOfMemoryError。</p><h3 id="构造方法"><a class="markdownIt-Anchor" href="#构造方法"></a> 构造方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                          TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,</span><br><span class="line">         Executors.defaultThreadFactory(), defaultHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="参数说明"><a class="markdownIt-Anchor" href="#参数说明"></a> 参数说明</h3><h4 id="corepoolsize"><a class="markdownIt-Anchor" href="#corepoolsize"></a> corePoolSize</h4><p>线程池核心线程数</p><h4 id="maximumpoolsize"><a class="markdownIt-Anchor" href="#maximumpoolsize"></a> maximumPoolSize</h4><p>线程池最大线程数</p><h4 id="keepalivetime-unit"><a class="markdownIt-Anchor" href="#keepalivetime-unit"></a> keepAliveTime unit</h4><p>空闲时间、时间单位</p><h4 id="workqueue"><a class="markdownIt-Anchor" href="#workqueue"></a> workQueue</h4><p>任务暂存队列</p><h4 id="defaulthandler"><a class="markdownIt-Anchor" href="#defaulthandler"></a> defaultHandler</h4><p>拒绝策略</p><p>AbortPolicy:丢弃任务并抛出RejectedExecutionException异常 (默认)</p><p>DiscardPolicy：也是丢弃任务，但是不抛出异常</p><p>DiscardOldestPolicy：丢弃队列最前面的任务，执行后面的任务</p><p>CallerRunsPolicy：由调用线程处理该任务</p><h4 id="问题什么时候核心线程数会增大到最大线程数"><a class="markdownIt-Anchor" href="#问题什么时候核心线程数会增大到最大线程数"></a> 问题：什么时候核心线程数会增大到最大线程数？</h4><p>在任务提交过程中，任务小于核心线程数时，新提交的任务直接新建work来执行任务，线程数已经达到核心线程数队列也满了的时候，新建work来接收任务。</p><p><a href="https://stackoverflow.com/questions/17659510/core-pool-size-vs-maximum-pool-size-in-threadpoolexecutor" target="_blank" rel="noopener">相关链接</a></p><p>corePoolSize == maximumPoolSize，即为固定的线程数<br>比如 Executors（线程池工具类） :</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单线程池，限制为1</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">(ThreadFactory threadFactory)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> FinalizableDelegatedExecutorService</span><br><span class="line">        (<span class="keyword">new</span> ThreadPoolExecutor(<span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                                <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(),</span><br><span class="line">                                threadFactory));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//固定线程池，限制并发数为nThreads</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                  <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                  <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="defaultthreadfactory"><a class="markdownIt-Anchor" href="#defaultthreadfactory"></a> defaultThreadFactory</h3><p>设置了每个线程的名字，优先级，非后台线程</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = &quot;pool-&quot; + poolNumber.getAndIncrement() + &quot;-thread-&quot; + threadNumber.getAndIncrement();</span><br></pre></td></tr></table></figure><h3 id="blockingqueue"><a class="markdownIt-Anchor" href="#blockingqueue"></a> BlockingQueue</h3><p>阻塞队列用于存放待执行的Runnable任务</p><h2 id="线程池如何实现线程复用的"><a class="markdownIt-Anchor" href="#线程池如何实现线程复用的"></a> 线程池如何实现线程复用的</h2><ol><li>首先利用原子<figure class="highlight plain"><figcaption><span>ctl```限制了最大线程数</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2. Work 是任务类，启动后执行方法</span><br><span class="line"></span><br><span class="line">基本用法：</span><br></pre></td></tr></table></figure></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">execute部分源码</span><br></pre></td></tr></table></figure><p>public void execute(Runnable command) {<br>//获取现在核心的并发数<br>int c = ctl.get();<br>if (workerCountOf© &lt; corePoolSize) {<br>//小于核心数直接添加为核心任务<br>if (addWorker(command, true))<br>return;<br>c = ctl.get();<br>}<br>//任务成功入队之后，还需要double-check(因为期间可能线程已死或者进入方法后线程池shutdown)<br>if (isRunning© &amp;&amp; workQueue.offer(command)) {<br>int recheck = ctl.get();<br>if (! isRunning(recheck) &amp;&amp; remove(command))<br>reject(command);<br>//线程死掉（过期之类的），此时新建一个线程，任务已<br>else if (workerCountOf(recheck) == 0)<br>addWorker(null, false);<br>}<br>else if (!addWorker(command, false))<br>reject(command);<br>}</p><pre class="highlight"><code class></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 并发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 线程池 </tag>
+            
+            <tag> ThreadPoolExecutor </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mongo 分区</title>
+      <link href="/2019/11/18/2019-11-18-mongo-sharding/"/>
+      <url>/2019/11/18/2019-11-18-mongo-sharding/</url>
+      
+        <content type="html"><![CDATA[<h1 id="为什么要分区"><a class="markdownIt-Anchor" href="#为什么要分区"></a> 为什么要分区</h1><p>大数据和高吞吐量的传统数据库系统受限于单个服务器的性能影响，比如提高CPU性能，加内存。</p><p>有两种方法可以解决单机性能问题，<strong>水平扩展</strong>和<strong>垂直扩展</strong></p><p>垂直扩展主要提高单机性能，提高cpu和内存，固态，磁盘等。受限于现有技术，比如现在最好的cpu，某某；受限于预算，公司钱不够；受限于云服务器厂商，云厂商的机型。</p><p>水平扩展提高机器数量</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> mongo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mongo </tag>
+            
+            <tag> mongodb </tag>
+            
+            <tag> 分区 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode 最大盛水量</title>
+      <link href="/2019/11/18/2019-11-02-maxArea/"/>
+      <url>/2019/11/18/2019-11-02-maxArea/</url>
+      
+        <content type="html"><![CDATA[<h1 id="原题链接"><a class="markdownIt-Anchor" href="#原题链接"></a> <a href="https://leetcode-cn.com/problems/container-with-most-water/" target="_blank" rel="noopener">原题链接</a></h1><h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2><p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p><p>说明：你不能倾斜容器，且 n 的值至少为 2。</p><h1 id="解法"><a class="markdownIt-Anchor" href="#解法"></a> 解法</h1><h2 id="暴力"><a class="markdownIt-Anchor" href="#暴力"></a> 暴力</h2><p>首先面积计算公式 (j-i)*min(height[i],height[j]),高度由两个height[下标]的较小值决定，跟木桶里的最大成水量由最小一块决定的短板效应一样。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; height.length; j++) &#123;</span><br><span class="line">            max = Math.max(max, (j - i) * Math.min(height[i], height[j]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="执行结果"><a class="markdownIt-Anchor" href="#执行结果"></a> 执行结果</h3><p>执行用时 :269 ms, 在所有 java 提交中击败了30.82% 的用户<br>内存消耗 :38.9 MB, 在所有 java 提交中击败了94.20%的用户</p><p>很明显还有更好的办法，我们可以从两边向内进行思考，而不是进行两次循环导致O(n^2)的复杂度</p><h2 id="双指针动态规划"><a class="markdownIt-Anchor" href="#双指针动态规划"></a> 双指针动态规划</h2><h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3><p>从两边向内进行判断,最大盛水量的高度由两边高度的较小（最小）高度决定，小的一边需要往内移动，找更大的边和当前的宽度进行计算面积</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = height.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 从两边向内进行判断,最大盛水量的高度由两边高度的较小（最小）高度决定，小的一边需要往内移动，找更大的边和当前的宽度进行计算面积</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">int</span> h = height[i] &lt; height[j] ? height[i++] : height[j--];</span><br><span class="line">        <span class="comment">//此处已经往内移动了一位，所以要加1补一个宽度</span></span><br><span class="line">        max = Math.max(max, h * (j - i + <span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="执行结果-2"><a class="markdownIt-Anchor" href="#执行结果-2"></a> 执行结果</h3><p>执行用时 :3 ms, 在所有 java 提交中击败了96.28%的用户<br>内存消耗 :39.3 MB, 在所有 java 提交中击败了93.75%的用户</p><p>现在已经击败了绝大部分用户了，如果有百分99击败的欢迎留言，相互交流学习</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 动态规划 </tag>
+            
+            <tag> leetcode 11 </tag>
+            
+            <tag> 双指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>spring 容器</title>
       <link href="/2019/10/29/2019-10-29-spring-container/"/>
       <url>/2019/10/29/2019-10-29-spring-container/</url>
@@ -79,33 +164,6 @@
     
     
     <entry>
-      <title>innodb 最佳实践</title>
-      <link href="/2019/10/09/2019-09-24-innodb-table/"/>
-      <url>/2019/10/09/2019-09-24-innodb-table/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html" target="_blank" rel="noopener">官方英文链接</a></p><ul><li>设置表中常用的一个列或者多个列为主键。没有用自增id做为主键。</li><li>有相同id的表使用联表查询。使用数据结构相同的外键提高性能，保持数据完整性（外键能起到关联更新和删除的作用，防止在子表中插入父表中没有的数据）。</li><li>关闭自动提交。每秒上百次提交影响性能（这取决于存储设备的性能）。</li><li>批量数据库DML（Data manipulation language，增删改）操作使用事务。</li><li>不使用表锁 <code>LOCK TABLES</code> 。innodb有行级锁，能够提高性能、保证数据完整。<code>SELECT ... FOR UPDATE</code></li><li>启用<code>innodb_file_per_table</code>（默认已启用） 或者通用的表空间存放数据和索引到单独的文件中，替换系统的表空间</li><li>自行判断使用 innodb 表压缩功能</li><li>启动服务时配置  <code>--sql_mode=NO_ENGINE_SUBSTITUTION</code> ，防止创建其他储存引擎的表</li></ul><p>注：<br><strong>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过再数据块中，对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，innoDB才使用行级锁，否则InnoDB将使用表锁，在实际开发中应当注意</strong><br>来源：<a href="https://www.cnblogs.com/fuwentao/p/7354145.html" target="_blank" rel="noopener">https://www.cnblogs.com/fuwentao/p/7354145.html</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> mysql </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> mysql </tag>
-            
-            <tag> innodb </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>攀登者电影</title>
       <link href="/2019/10/09/2019-10-01-climber/"/>
       <url>/2019/10/09/2019-10-01-climber/</url>
@@ -125,6 +183,33 @@
             <tag> 攀登者 </tag>
             
             <tag> 吴京 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>innodb 最佳实践</title>
+      <link href="/2019/10/09/2019-09-24-innodb-table/"/>
+      <url>/2019/10/09/2019-09-24-innodb-table/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html" target="_blank" rel="noopener">官方英文链接</a></p><ul><li>设置表中常用的一个列或者多个列为主键。没有用自增id做为主键。</li><li>有相同id的表使用联表查询。使用数据结构相同的外键提高性能，保持数据完整性（外键能起到关联更新和删除的作用，防止在子表中插入父表中没有的数据）。</li><li>关闭自动提交。每秒上百次提交影响性能（这取决于存储设备的性能）。</li><li>批量数据库DML（Data manipulation language，增删改）操作使用事务。</li><li>不使用表锁 <code>LOCK TABLES</code> 。innodb有行级锁，能够提高性能、保证数据完整。<code>SELECT ... FOR UPDATE</code></li><li>启用<code>innodb_file_per_table</code>（默认已启用） 或者通用的表空间存放数据和索引到单独的文件中，替换系统的表空间</li><li>自行判断使用 innodb 表压缩功能</li><li>启动服务时配置  <code>--sql_mode=NO_ENGINE_SUBSTITUTION</code> ，防止创建其他储存引擎的表</li></ul><p>注：<br><strong>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过再数据块中，对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，innoDB才使用行级锁，否则InnoDB将使用表锁，在实际开发中应当注意</strong><br>来源：<a href="https://www.cnblogs.com/fuwentao/p/7354145.html" target="_blank" rel="noopener">https://www.cnblogs.com/fuwentao/p/7354145.html</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> innodb </tag>
             
         </tags>
       

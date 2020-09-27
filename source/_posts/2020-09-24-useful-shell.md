@@ -31,5 +31,5 @@ tcp6       0      0 :::80                   :::*                    LISTEN      
 ```
 备注 tcp6 表示 tcp 支持ip V6
 
-## 进程中线程信息
-todo
+## 进程中线程信息 todo
+jstat

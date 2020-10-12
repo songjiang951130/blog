@@ -287,6 +287,424 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/05/31/2019-05-30-maxsubarray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梦之马">
+      <meta itemprop="description" content="生命不息，折腾不止">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梦之马的乐园">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/05/31/2019-05-30-maxsubarray/" class="post-title-link" itemprop="url">最大子数组求解以及逐步优化</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-31 06:55:33" itemprop="dateCreated datePublished" datetime="2019-05-31T06:55:33+08:00">2019-05-31</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-09 11:43:24" itemprop="dateModified" datetime="2019-10-09T11:43:24+08:00">2019-10-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/05/31/2019-05-30-maxsubarray/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/05/31/2019-05-30-maxsubarray/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.5k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="最大子数组求解以及逐步优化"><a class="markdownIt-Anchor" href="#最大子数组求解以及逐步优化"></a> 最大子数组求解以及逐步优化</h1>
+<p><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="noopener">leetcode 传送门</a></p>
+<h2 id="暴力解法"><a class="markdownIt-Anchor" href="#暴力解法"></a> 暴力解法</h2>
+<p>求出所有子数组的和，numS[i,j]（意味着子数组 下标i到j）,所以i从0开始到数组最后一位，j从i开始到数组最后一位，算出所有的子数组和 temp，max取temp的最大值即可</p>
+<blockquote>
+<p>时间复杂度 O(n2)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArrayByForce</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; nums.length; j++) &#123;</span><br><span class="line">            temp += nums[j];</span><br><span class="line">            max = temp &gt; max ? temp : max;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="动态规划算法"><a class="markdownIt-Anchor" href="#动态规划算法"></a> 动态规划（算法）</h2>
+<p>算法思路：用一个dp数组来记录当前位置的子数组和dp[i]，dp[i]的和依赖于dp[i-1]+nums[i]的和 sum， 1. 如果sum小于0，说明这一次的计算不符合要求，dp[i] = 0，此时相当于 dp[i+1] 需要从新计算子数组和 2. 只要sum大于0，那么 dp[i] = sum，一直往下加</p>
+<p>而 max 最大值等于 dp[0,length) 的 最大值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    <span class="keyword">int</span> max = nums[<span class="number">0</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">1</span>; index &lt; nums.length; index++) &#123;</span><br><span class="line">        dp[index] = nums[index] + (dp[index - <span class="number">1</span>] &gt; <span class="number">0</span> ? dp[index - <span class="number">1</span>] : <span class="number">0</span>);</span><br><span class="line">        max = dp[index] &gt; max ? dp[index] : max;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>时间复杂度 O(n) 空间复杂度 O(n)</p>
+</blockquote>
+<h2 id="最节省内存的动态规划"><a class="markdownIt-Anchor" href="#最节省内存的动态规划"></a> 最节省内存的动态规划</h2>
+<p>在上面一步你可以看到，没必要使用整个dp数组来记录临时的最大值，仅仅需要的变量便是dp[i-1]（dp[i]需要dp[i-1]），这样在空间优化到了O(1)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> temp = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">1</span>; index &lt; nums.length; index++) &#123;</span><br><span class="line">        temp = nums[index] + (temp &gt; <span class="number">0</span> ? temp : <span class="number">0</span>);</span><br><span class="line">        max = temp &gt; max ? temp : max;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>时间复杂度 O(n) 空间复杂度 O(1)</p>
+</blockquote>
+<p>下面的题型和最大子数组是一个类型</p>
+<p>相关链接：股票买入卖出时间 <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener">leetcode传动门</a></p>
+<p>todo 待补充 原算法链接</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2018/12/26/2018-12-26-ssh-authentication-refused/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梦之马">
+      <meta itemprop="description" content="生命不息，折腾不止">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梦之马的乐园">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/12/26/2018-12-26-ssh-authentication-refused/" class="post-title-link" itemprop="url">sshd Authentication refused</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-26 18:29:03" itemprop="dateCreated datePublished" datetime="2018-12-26T18:29:03+08:00">2018-12-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-09 11:43:24" itemprop="dateModified" datetime="2019-10-09T11:43:24+08:00">2019-10-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ssh/" itemprop="url" rel="index"><span itemprop="name">ssh</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/12/26/2018-12-26-ssh-authentication-refused/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/12/26/2018-12-26-ssh-authentication-refused/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>626</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="2018-12-26-ssh-authentication-refused"><a class="markdownIt-Anchor" href="#2018-12-26-ssh-authentication-refused"></a> 2018-12-26-ssh-Authentication refused</h1>
+<p>配置相关 ssh 后还是无法免密登录，后来发现了一篇文章说是 ssh 安全问题 cat /var/log/secure</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authentication refused: bad ownership or modes <span class="keyword">for</span> directory /home/songjiang</span><br></pre></td></tr></table></figure>
+<p>很明显这个提示说：这个文件的所有人和 modes（文件夹默认是755，文件是644） 有误，所以授权拒绝了。因为其他开发人员乱动了文件权限所以我这个文件夹变成了 777</p>
+<p>相关命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 /home/songjiang</span><br></pre></td></tr></table></figure>
+<p>把用户目录 /home/songjiang 改为 755 后，却出现无法访问的问题。原来里面有不属于我的文件且无法读取，删除或者chmod一下就好</p>
+<p>另外 .ssh 文件夹下modes 如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 songjiang dev  397 Dec 24 20:20 authorized_keys</span><br><span class="line">-rw------- 1 songjiang dev 1671 Dec 24 20:02 id_rsa</span><br><span class="line">-rw-r--r-- 1 songjiang dev  413 Dec 24 20:02 id_rsa.pub</span><br><span class="line">-rw-r--r-- 1 songjiang dev    0 Dec 24 20:20 known_hosts</span><br></pre></td></tr></table></figure>
+<p>ps:吐槽一下，乱改文件权限真的烦</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2018/12/26/2019-01-22-string-and-slice/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梦之马">
+      <meta itemprop="description" content="生命不息，折腾不止">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梦之马的乐园">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/12/26/2019-01-22-string-and-slice/" class="post-title-link" itemprop="url">字符串和切片</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-26 10:29:03" itemprop="dateCreated datePublished" datetime="2018-12-26T10:29:03+08:00">2018-12-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-09 11:43:24" itemprop="dateModified" datetime="2019-10-09T11:43:24+08:00">2019-10-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/go/" itemprop="url" rel="index"><span itemprop="name">go</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/12/26/2019-01-22-string-and-slice/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/12/26/2019-01-22-string-and-slice/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>250</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="2019-01-22-string-and-slice"><a class="markdownIt-Anchor" href="#2019-01-22-string-and-slice"></a> 2019-01-22-string-and-slice</h1>
+<p>在 go 中字符串属于不可变类型，对字符串的修改会报错</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str :=<span class="string">"hello world"</span></span><br><span class="line">str[<span class="number">0</span>] = <span class="string">"A"</span></span><br><span class="line"><span class="comment">//输出 cannot assign to str[0]</span></span><br></pre></td></tr></table></figure>
+<p>所以所有对字符串的修改必须转化为切片（slice）, 对切片进行修改，再转为字符串</p>
+<p>以下为示例代码</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对英文字符串，直接可以转为字节切片</span></span><br><span class="line">byteArray := []<span class="keyword">byte</span>(s)</span><br><span class="line"><span class="comment">//中文得转为 rune 类型的切片</span></span><br><span class="line">runeArray := []<span class="keyword">rune</span>(s)</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2018/12/20/2018-12-19-nginx-config/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -631,7 +1049,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -644,7 +1062,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -657,7 +1075,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -719,14 +1137,14 @@
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">22k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">38 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
@@ -811,6 +1229,12 @@
   
 
   
+    
+      
+    
+      
+    
+      
     
       
     

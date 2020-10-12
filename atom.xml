@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://songjiang951130.github.io/"/>
-  <updated>2020-09-23T11:59:33.586Z</updated>
+  <updated>2020-09-28T03:36:29.941Z</updated>
   <id>https://songjiang951130.github.io/</id>
   
   <author>
@@ -15,6 +15,96 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HotSpot虚拟机垃圾收集调优指南（CMS篇）</title>
+    <link href="https://songjiang951130.github.io/2020/09/27/2020-09-27-JVM-CMS/"/>
+    <id>https://songjiang951130.github.io/2020/09/27/2020-09-27-JVM-CMS/</id>
+    <published>2020-09-27T12:40:36.300Z</published>
+    <updated>2020-09-28T03:36:29.941Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;主要理念&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#主要理念&quot;&gt;&lt;/a&gt; 主要理念&lt;/h2&gt;
+&lt;h3 id=&quot;concurrent-mark-sweep&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="jvm" scheme="https://songjiang951130.github.io/categories/jvm/"/>
+    
+    
+      <category term="thread" scheme="https://songjiang951130.github.io/tags/thread/"/>
+    
+      <category term="Linux" scheme="https://songjiang951130.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>G1 使用手册</title>
+    <link href="https://songjiang951130.github.io/2020/09/27/2020-09-27-JVM-G1/"/>
+    <id>https://songjiang951130.github.io/2020/09/27/2020-09-27-JVM-G1/</id>
+    <published>2020-09-27T06:37:28.117Z</published>
+    <updated>2020-09-27T07:12:42.551Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;主要理念&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#主要理念&quot;&gt;&lt;/a&gt; 主要理念&lt;/h2&gt;
+&lt;h2 id=&quot;配置参数&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#配置参数&quot;&gt;&lt;/a&gt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="jvm" scheme="https://songjiang951130.github.io/categories/jvm/"/>
+    
+    
+      <category term="thread" scheme="https://songjiang951130.github.io/tags/thread/"/>
+    
+      <category term="Linux" scheme="https://songjiang951130.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记录有用的shell</title>
+    <link href="https://songjiang951130.github.io/2020/09/24/2020-09-24-useful-shell/"/>
+    <id>https://songjiang951130.github.io/2020/09/24/2020-09-24-useful-shell/</id>
+    <published>2020-09-24T11:51:56.573Z</published>
+    <updated>2020-09-27T06:37:09.663Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;java-进程查看&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#java-进程查看&quot;&gt;&lt;/a&gt; java 进程查看&lt;/h2&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="shell" scheme="https://songjiang951130.github.io/categories/shell/"/>
+    
+    
+      <category term="thread" scheme="https://songjiang951130.github.io/tags/thread/"/>
+    
+      <category term="Linux" scheme="https://songjiang951130.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>java 线程池介绍</title>
@@ -196,6 +286,35 @@
   </entry>
   
   <entry>
+    <title>innodb 最佳实践</title>
+    <link href="https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/"/>
+    <id>https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/</id>
+    <published>2019-10-09T03:43:24.750Z</published>
+    <updated>2019-10-10T03:01:00.585Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="https://songjiang951130.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="https://songjiang951130.github.io/tags/mysql/"/>
+    
+      <category term="innodb" scheme="https://songjiang951130.github.io/tags/innodb/"/>
+    
+  </entry>
+  
+  <entry>
     <title>攀登者电影</title>
     <link href="https://songjiang951130.github.io/2019/10/09/2019-10-01-climber/"/>
     <id>https://songjiang951130.github.io/2019/10/09/2019-10-01-climber/</id>
@@ -223,35 +342,6 @@
       <category term="攀登者" scheme="https://songjiang951130.github.io/tags/%E6%94%80%E7%99%BB%E8%80%85/"/>
     
       <category term="吴京" scheme="https://songjiang951130.github.io/tags/%E5%90%B4%E4%BA%AC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>innodb 最佳实践</title>
-    <link href="https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/"/>
-    <id>https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/</id>
-    <published>2019-10-09T03:43:24.750Z</published>
-    <updated>2019-10-10T03:01:00.585Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="mysql" scheme="https://songjiang951130.github.io/categories/mysql/"/>
-    
-    
-      <category term="mysql" scheme="https://songjiang951130.github.io/tags/mysql/"/>
-    
-      <category term="innodb" scheme="https://songjiang951130.github.io/tags/innodb/"/>
     
   </entry>
   
@@ -523,98 +613,6 @@
       <category term="datetime" scheme="https://songjiang951130.github.io/tags/datetime/"/>
     
       <category term="date" scheme="https://songjiang951130.github.io/tags/date/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>最大子数组求解以及逐步优化</title>
-    <link href="https://songjiang951130.github.io/2019/05/31/2019-05-30-maxsubarray/"/>
-    <id>https://songjiang951130.github.io/2019/05/31/2019-05-30-maxsubarray/</id>
-    <published>2019-05-30T22:55:33.000Z</published>
-    <updated>2019-10-09T03:43:24.749Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;最大子数组求解以及逐步优化&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#最大子数组求解以及逐步优化&quot;&gt;&lt;/a&gt; 最大子数组求解以及逐步优化&lt;/h1&gt;
-&lt;p&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="算法" scheme="https://songjiang951130.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="动态规划" scheme="https://songjiang951130.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-      <category term="最大子数组" scheme="https://songjiang951130.github.io/tags/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/"/>
-    
-      <category term="kanane" scheme="https://songjiang951130.github.io/tags/kanane/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sshd Authentication refused</title>
-    <link href="https://songjiang951130.github.io/2018/12/26/2018-12-26-ssh-authentication-refused/"/>
-    <id>https://songjiang951130.github.io/2018/12/26/2018-12-26-ssh-authentication-refused/</id>
-    <published>2018-12-26T10:29:03.000Z</published>
-    <updated>2019-10-09T03:43:24.748Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;2018-12-26-ssh-authentication-refused&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#2018-12-26-ssh-authentication-refused&quot;&gt;&lt;/a&gt;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="ssh" scheme="https://songjiang951130.github.io/categories/ssh/"/>
-    
-    
-      <category term="ssh" scheme="https://songjiang951130.github.io/tags/ssh/"/>
-    
-      <category term="免密登录" scheme="https://songjiang951130.github.io/tags/%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>字符串和切片</title>
-    <link href="https://songjiang951130.github.io/2018/12/26/2019-01-22-string-and-slice/"/>
-    <id>https://songjiang951130.github.io/2018/12/26/2019-01-22-string-and-slice/</id>
-    <published>2018-12-26T02:29:03.000Z</published>
-    <updated>2019-10-09T03:43:24.749Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;2019-01-22-string-and-slice&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#2019-01-22-string-and-slice&quot;&gt;&lt;/a&gt;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="go" scheme="https://songjiang951130.github.io/categories/go/"/>
-    
-    
-      <category term="string" scheme="https://songjiang951130.github.io/tags/string/"/>
-    
-      <category term="slice" scheme="https://songjiang951130.github.io/tags/slice/"/>
-    
-      <category term="切片" scheme="https://songjiang951130.github.io/tags/%E5%88%87%E7%89%87/"/>
     
   </entry>
   

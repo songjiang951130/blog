@@ -327,7 +327,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-28 11:36:29" itemprop="dateModified" datetime="2020-09-28T11:36:29+08:00">2020-09-28</time>
+                <time title="修改时间：2020-10-16 14:17:50" itemprop="dateModified" datetime="2020-10-16T14:17:50+08:00">2020-10-16</time>
               </span>
             
           
@@ -368,7 +368,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>614</span>
+              <span>1.2k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -378,7 +378,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
           
 
@@ -393,21 +393,11 @@
       
           <h2 id="主要理念"><a class="markdownIt-Anchor" href="#主要理念"></a> 主要理念</h2>
 <h3 id="concurrent-mark-sweep"><a class="markdownIt-Anchor" href="#concurrent-mark-sweep"></a> Concurrent Mark Sweep</h3>
-<p>CMS 设计目标是更少的垃圾回收暂停时间，能在应用运行时，进行垃圾回收。对象存活周期长（主要应用在老年代）和多核处理器（2020了，不会有线上cpu还单核吧）。期望应用更短暂停时间，应该采用这款垃圾回收器。JVM option 配置： <code></code><br>
-与其他常见的回收器一样，CMS采用分代（minor 和 major）。<br>
-CMS由于单独的线程可以进行垃圾回收使得在major gc时同时可以进行对象访问，从而降低了GC时间。CMS在 major 时期，会在开始和中间产生暂停用户线程的访问。</p>
-<h2 id="暂停"><a class="markdownIt-Anchor" href="#暂停"></a> 暂停</h2>
-<p>CMS收集器在并发收集周期中两次暂停应用程序。第一个暂停是将可从根直接访问的对象（例如，来自应用程序线程堆栈和寄存器的对象引用，静态对象等）和从堆中其他位置（例如，年轻一代）直接标记为活动对象。第一暂停被称为 <code>initial mark pause</code>。第二个暂停是在并发跟踪阶段的末尾，它查找由于CMS收集器完成了对象的引用后，应用程序线程对对象的引用进行了更新而导致并发跟踪遗漏的对象。第二暂停称为 <code>remark pause</code>。</p>
-<h2 id="并发阶段"><a class="markdownIt-Anchor" href="#并发阶段"></a> 并发阶段</h2>
-<h2 id="配置参数"><a class="markdownIt-Anchor" href="#配置参数"></a> 配置参数</h2>
-<p>参数解释：</p>
-<ul>
-<li>以-X开头的选项是非标准的（不保证所有VM实施都支持该选项），并且在以后的JDK发行版中，如有更改，恕不另行通知。</li>
-<li>用-XX指定的选项不稳定，如有更改，恕不另行通知。</li>
-</ul>
-<h3 id="参考链接"><a class="markdownIt-Anchor" href="#参考链接"></a> 参考链接</h3>
-<p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/cms.html" target="_blank" rel="noopener">官方调优指导</a><br>
-<a href="https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/G1GettingStarted/index.html" target="_blank" rel="noopener">大致流程梳理</a>, 参见 review gc in cms</p>
+<p>CMS 设计目标是更少的垃圾回收暂停时间，能在应用运行时，进行垃圾回收。对象存活周期长（主要应用在老年代）和多核处理器（2020了，不会有线上cpu还单核吧）。期望应用更短暂停时间，应该采用这款垃圾回收器。JVM option 配置：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">与其他常见的回收器一样，CMS采用分代（minor 和 major）。</span><br><span class="line">CMS由于单独的线程可以进行垃圾回收使得在major gc时同时可以进行对象访问，从而降低了GC时间。CMS在 major 时期，会在开始和中间产生暂停用户线程的访问。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 暂停</span><br><span class="line">CMS收集器在并发收集周期中两次暂停应用程序。第一个暂停是将可从根直接访问的对象（例如，来自应用程序线程堆栈和寄存器的对象引用，静态对象等）和从堆中其他位置（例如，年轻一代）直接标记为活动对象。第一暂停被称为```initial mark pause```。第二个暂停是在并发跟踪阶段的末尾，它查找由于CMS收集器完成了对象的引用后，应用程序线程对对象的引用进行了更新而导致并发跟踪遗漏的对象。第二暂停称为```remark pause```。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 并发模式及其故障</span><br><span class="line">CMS收集器在老年代（the tenured generation）使用多个垃圾收集器线程，这些垃圾收集器线程与应用程序线程同时运行。如前所述（暂停），在正常操作中，CMS收集器在应用程序线程仍在运行的情况下执行其大部分跟踪和清除工作，因此应用程序线程仅会看到短暂的暂停。但是，如果CMS收集器无法在老年代满前完成垃圾回收，或者老年代没有可用的空间进行新晋对象的空间分配，则暂停应用程序，并使用所有应用程序线程均已停止。这种情况称为并发模式故障，表示需要调整CMS收集器参数。如果并发收集被显式垃圾回收（System.gc()）中断，或者为提供诊断工具信息所需的垃圾收集中断了，这种情况称为并发中断。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 配置参数</span><br><span class="line">参数解释：</span><br><span class="line"> - 以-X开头的选项是非标准的（不保证所有VM实施都支持该选项），并且在以后的JDK发行版中，如有更改，恕不另行通知。</span><br><span class="line">  - 用-XX指定的选项不稳定，如有更改，恕不另行通知。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 参考链接</span><br><span class="line"></span><br><span class="line">[官方调优指导](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/cms.html)</span><br><span class="line">[大致流程梳理](https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/G1GettingStarted/index.html), 参见 review gc in cms</span><br></pre></td></tr></table></figure></p>
+<p>Young Generation 年轻代<br>
+Tenured Generation 老年代<br>
+Permanent Generation 永久代</p>
+<pre class="highlight"><code class></code></pre>
 
         
       
@@ -459,11 +449,19 @@ CMS由于单独的线程可以进行垃圾回收使得在major gc时同时可以
                 
               
 
-              <time title="创建时间：2020-09-27 14:37:28 / 修改时间：15:12:42" itemprop="dateCreated datePublished" datetime="2020-09-27T14:37:28+08:00">2020-09-27</time>
+              <time title="创建时间：2020-09-27 14:37:28" itemprop="dateCreated datePublished" datetime="2020-09-27T14:37:28+08:00">2020-09-27</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-19 15:23:20" itemprop="dateModified" datetime="2020-10-19T15:23:20+08:00">2020-10-19</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -1142,6 +1140,145 @@ reject(command);<br>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/11/18/2020-10-19-quick-sort/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梦之马">
+      <meta itemprop="description" content="生命不息，折腾不止">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梦之马的乐园">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/18/2020-10-19-quick-sort/" class="post-title-link" itemprop="url">quick sort</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-18 17:48:26" itemprop="dateCreated datePublished" datetime="2019-11-18T17:48:26+08:00">2019-11-18</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-19 15:22:00" itemprop="dateModified" datetime="2020-10-19T15:22:00+08:00">2020-10-19</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/排序/" itemprop="url" rel="index"><span itemprop="name">排序</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/18/2020-10-19-quick-sort/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/11/18/2020-10-19-quick-sort/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.1k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>2 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="快速排序思想"><a class="markdownIt-Anchor" href="#快速排序思想"></a> 快速排序思想</h2>
+<blockquote>
+<p>1、选取一个基准元素（pivot）<br>
+2、比pivot小的放到pivot左边，比pivot大的放到pivot右边<br>
+3、对pivot左边的序列和右边的序列分别递归的执行步骤1和步骤2</p>
+</blockquote>
+<p>确定第一位为基准数，两头向中间进行遍历，如果找到左边数大于基准数且右边的数小于基准数，那么进行交换。直到左右遍历节点相遇，交换基准数和相遇节点</p>
+<h3 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h3>
+<p>时间复杂度: 最坏情况；O(n^2) 最好情况：O(nlog(n)) 平均情况:O(nlog(n))</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public void sort(int[] array) &#123;</span><br><span class="line">    quickSort(array, 0, array.length - 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void quickSort(int[] array, int start, int end) &#123;</span><br><span class="line">    if (start &gt; end) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(Arrays.toString(array));</span><br><span class="line">    int i = start;</span><br><span class="line">    int j = end;</span><br><span class="line">    int index = array[start];</span><br><span class="line">    while (i &lt; j) &#123;</span><br><span class="line">        //寻找需要交换的元素,在升序中左侧节点如果小于基准值，则i++</span><br><span class="line">        while (i &lt; j &amp;&amp; array[i] &lt; index) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        while (i &lt; j &amp;&amp; array[j] &gt; index) &#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        if (i &lt; j) &#123;</span><br><span class="line">            int temp = array[i];</span><br><span class="line">            array[i] = array[j];</span><br><span class="line">            array[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //基准位的值和中间值交换</span><br><span class="line">    array[i] = index;</span><br><span class="line">    quickSort(array, start, i - 1);</span><br><span class="line">    quickSort(array, i + 1, end);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考链接"><a class="markdownIt-Anchor" href="#参考链接"></a> 参考链接</h2>
+<p><a href="https://blog.csdn.net/jianyuerensheng/article/details/51258374" target="_blank" rel="noopener">csdn-快速排序</a></p>
+<p><a href="https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html" target="_blank" rel="noopener">极客学院-马桶上学算法</a></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/29/2019-10-29-spring-container/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1534,146 +1671,6 @@ reject(command);<br>
   
 
     
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梦之马">
-      <meta itemprop="description" content="生命不息，折腾不止">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="梦之马的乐园">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/09/2019-09-24-innodb-table/" class="post-title-link" itemprop="url">innodb 最佳实践</a>
-          
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-09 11:43:24" itemprop="dateCreated datePublished" datetime="2019-10-09T11:43:24+08:00">2019-10-09</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-10 11:01:00" itemprop="dateModified" datetime="2019-10-10T11:01:00+08:00">2019-10-10</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/10/09/2019-09-24-innodb-table/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/09/2019-09-24-innodb-table/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>578</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html" target="_blank" rel="noopener">官方英文链接</a></p>
-<ul>
-<li>设置表中常用的一个列或者多个列为主键。没有用自增id做为主键。</li>
-<li>有相同id的表使用联表查询。使用数据结构相同的外键提高性能，保持数据完整性（外键能起到关联更新和删除的作用，防止在子表中插入父表中没有的数据）。</li>
-<li>关闭自动提交。每秒上百次提交影响性能（这取决于存储设备的性能）。</li>
-<li>批量数据库DML（Data manipulation language，增删改）操作使用事务。</li>
-<li>不使用表锁 <code>LOCK TABLES</code> 。innodb有行级锁，能够提高性能、保证数据完整。<code>SELECT ... FOR UPDATE</code></li>
-<li>启用<code>innodb_file_per_table</code>（默认已启用） 或者通用的表空间存放数据和索引到单独的文件中，替换系统的表空间</li>
-<li>自行判断使用 innodb 表压缩功能</li>
-<li>启动服务时配置  <code>--sql_mode=NO_ENGINE_SUBSTITUTION</code> ，防止创建其他储存引擎的表</li>
-</ul>
-<p>注：<br>
-<strong>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过再数据块中，对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，innoDB才使用行级锁，否则InnoDB将使用表锁，在实际开发中应当注意</strong><br>
-来源：<a href="https://www.cnblogs.com/fuwentao/p/7354145.html" target="_blank" rel="noopener">https://www.cnblogs.com/fuwentao/p/7354145.html</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-    
   </div>
 
   
@@ -1726,7 +1723,7 @@ reject(command);<br>
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1739,7 +1736,7 @@ reject(command);<br>
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1752,7 +1749,7 @@ reject(command);<br>
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1814,14 +1811,14 @@ reject(command);<br>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">22k</span>
+    <span title="站点总字数">24k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">40 分钟</span>
+    <span title="站点阅读时长">43 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>

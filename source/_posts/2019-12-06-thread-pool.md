@@ -67,20 +67,16 @@ corePoolSize == maximumPoolSize，即为固定的线程数
 ```
 ### defaultThreadFactory
 设置了每个线程的名字，优先级，非后台线程
-```
+`
 name = "pool-" + poolNumber.getAndIncrement() + "-thread-" + threadNumber.getAndIncrement();
-```
+`
 
 ### BlockingQueue
 阻塞队列用于存放待执行的Runnable任务
 
 ## 线程池如何实现线程复用的
-1. 首先利用原子```AtomicInteger ctl```限制了最大线程数
+1. 首先利用原子`AtomicInteger ctl`限制了最大线程数
 2. Work 是任务类，启动后执行方法
-
-基本用法：
-```
-```
 
 
 execute部分源码

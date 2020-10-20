@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://songjiang951130.github.io/2020/09/27/2020-09-27-JVM-G1/</loc>
+    
+    <lastmod>2020-10-20T06:58:23.027Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://songjiang951130.github.io/2019/10/09/2019-10-05-rich-father/</loc>
+    
+    <lastmod>2020-10-19T08:43:23.780Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://songjiang951130.github.io/2019/12/06/2019-12-06-thread-pool/</loc>
     
     <lastmod>2020-10-19T07:38:49.604Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>https://songjiang951130.github.io/2020/09/27/2020-09-27-JVM-CMS/</loc>
     
     <lastmod>2020-10-19T07:37:19.300Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://songjiang951130.github.io/2020/09/27/2020-09-27-JVM-G1/</loc>
-    
-    <lastmod>2020-10-19T07:23:20.499Z</lastmod>
     
   </url>
   
@@ -68,13 +75,6 @@
     <loc>https://songjiang951130.github.io/2019/10/21/2019-10-21-DispatcherServlet/</loc>
     
     <lastmod>2019-10-21T12:55:34.099Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://songjiang951130.github.io/2019/10/09/2019-10-05-rich-father/</loc>
-    
-    <lastmod>2019-10-10T03:03:42.625Z</lastmod>
     
   </url>
   

@@ -287,146 +287,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梦之马">
-      <meta itemprop="description" content="生命不息，折腾不止">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="梦之马的乐园">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/09/2019-09-24-innodb-table/" class="post-title-link" itemprop="url">innodb 最佳实践</a>
-          
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-09 11:43:24" itemprop="dateCreated datePublished" datetime="2019-10-09T11:43:24+08:00">2019-10-09</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-10 11:01:00" itemprop="dateModified" datetime="2019-10-10T11:01:00+08:00">2019-10-10</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/10/09/2019-09-24-innodb-table/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/09/2019-09-24-innodb-table/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>578</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html" target="_blank" rel="noopener">官方英文链接</a></p>
-<ul>
-<li>设置表中常用的一个列或者多个列为主键。没有用自增id做为主键。</li>
-<li>有相同id的表使用联表查询。使用数据结构相同的外键提高性能，保持数据完整性（外键能起到关联更新和删除的作用，防止在子表中插入父表中没有的数据）。</li>
-<li>关闭自动提交。每秒上百次提交影响性能（这取决于存储设备的性能）。</li>
-<li>批量数据库DML（Data manipulation language，增删改）操作使用事务。</li>
-<li>不使用表锁 <code>LOCK TABLES</code> 。innodb有行级锁，能够提高性能、保证数据完整。<code>SELECT ... FOR UPDATE</code></li>
-<li>启用<code>innodb_file_per_table</code>（默认已启用） 或者通用的表空间存放数据和索引到单独的文件中，替换系统的表空间</li>
-<li>自行判断使用 innodb 表压缩功能</li>
-<li>启动服务时配置  <code>--sql_mode=NO_ENGINE_SUBSTITUTION</code> ，防止创建其他储存引擎的表</li>
-</ul>
-<p>注：<br>
-<strong>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过再数据块中，对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，innoDB才使用行级锁，否则InnoDB将使用表锁，在实际开发中应当注意</strong><br>
-来源：<a href="https://www.cnblogs.com/fuwentao/p/7354145.html" target="_blank" rel="noopener">https://www.cnblogs.com/fuwentao/p/7354145.html</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-    
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/09/2019-10-01-climber/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -839,6 +699,146 @@
 <h1 id="最后"><a class="markdownIt-Anchor" href="#最后"></a> 最后</h1>
 <p>我总感觉 leancloud不太稳，如果是展示访问人数，我还是推荐不蒜子，直接启用就好使</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true</span><br><span class="line">  total_visitors_icon: user</span><br><span class="line">  total_views: true</span><br><span class="line">  total_views_icon: eye</span><br><span class="line">  post_views: true</span><br><span class="line">  post_views_icon: eye</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梦之马">
+      <meta itemprop="description" content="生命不息，折腾不止">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梦之马的乐园">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/10/09/2019-09-24-innodb-table/" class="post-title-link" itemprop="url">innodb 最佳实践</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-09 11:43:24" itemprop="dateCreated datePublished" datetime="2019-10-09T11:43:24+08:00">2019-10-09</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-10 11:01:00" itemprop="dateModified" datetime="2019-10-10T11:01:00+08:00">2019-10-10</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/10/09/2019-09-24-innodb-table/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/09/2019-09-24-innodb-table/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>578</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html" target="_blank" rel="noopener">官方英文链接</a></p>
+<ul>
+<li>设置表中常用的一个列或者多个列为主键。没有用自增id做为主键。</li>
+<li>有相同id的表使用联表查询。使用数据结构相同的外键提高性能，保持数据完整性（外键能起到关联更新和删除的作用，防止在子表中插入父表中没有的数据）。</li>
+<li>关闭自动提交。每秒上百次提交影响性能（这取决于存储设备的性能）。</li>
+<li>批量数据库DML（Data manipulation language，增删改）操作使用事务。</li>
+<li>不使用表锁 <code>LOCK TABLES</code> 。innodb有行级锁，能够提高性能、保证数据完整。<code>SELECT ... FOR UPDATE</code></li>
+<li>启用<code>innodb_file_per_table</code>（默认已启用） 或者通用的表空间存放数据和索引到单独的文件中，替换系统的表空间</li>
+<li>自行判断使用 innodb 表压缩功能</li>
+<li>启动服务时配置  <code>--sql_mode=NO_ENGINE_SUBSTITUTION</code> ，防止创建其他储存引擎的表</li>
+</ul>
+<p>注：<br>
+<strong>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过再数据块中，对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，innoDB才使用行级锁，否则InnoDB将使用表锁，在实际开发中应当注意</strong><br>
+来源：<a href="https://www.cnblogs.com/fuwentao/p/7354145.html" target="_blank" rel="noopener">https://www.cnblogs.com/fuwentao/p/7354145.html</a></p>
 
         
       

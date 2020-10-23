@@ -287,7 +287,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/09/2019-10-01-climber/">
+    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="梦之马">
@@ -301,7 +301,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/2019/10/09/2019-10-01-climber/" class="post-title-link" itemprop="url">攀登者电影</a>
+            <a href="/2019/10/09/2019-09-24-innodb-table/" class="post-title-link" itemprop="url">innodb 最佳实践</a>
           
         </h2>
 
@@ -327,7 +327,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-10 11:03:34" itemprop="dateModified" datetime="2019-10-10T11:03:34+08:00">2019-10-10</time>
+                <time title="修改时间：2019-10-10 11:01:00" itemprop="dateModified" datetime="2019-10-10T11:01:00+08:00">2019-10-10</time>
               </span>
             
           
@@ -337,7 +337,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/movie/" itemprop="url" rel="index"><span itemprop="name">movie</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
 
                 
                 
@@ -356,7 +356,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/10/09/2019-10-01-climber/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/09/2019-10-01-climber/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/10/09/2019-09-24-innodb-table/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/09/2019-09-24-innodb-table/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -368,7 +368,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>391</span>
+              <span>578</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -391,22 +391,147 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>剧情介绍不剧透那种，主要讲的是一行人历经险阻<code>两次</code>登上珠穆朗玛峰的故事。<br>
-看这部电影最大原因还是因为吴京，毕竟之前的流浪地球太火爆了。</p>
-<h1 id="为什么要登山"><a class="markdownIt-Anchor" href="#为什么要登山"></a> 为什么要登山</h1>
-<ol>
-<li>开篇有背景介绍，珠峰在和邻国边境上有争议，而且邻国已经在南边登顶了，我们需要登上自己的山。这登顶成功一行为还是极具历史意义的。</li>
-<li>人类总是要面向未来的，高山海底、宇宙，任何未知的东西都吸引着我们去探索（忘了原话了）</li>
-</ol>
-<p>对于第二点还是很有感触的，在学校有邓小平同志的标语</p>
-<blockquote>
-<p>面向现代化，面向世界，面向未来</p>
-</blockquote>
-<p>此刻便觉得伟人的伟大之处。人类是向前发展壮大的，少不了这种攀登顶峰的精神，少不了教育的支撑。</p>
-<h1 id="一些片段"><a class="markdownIt-Anchor" href="#一些片段"></a> 一些片段</h1>
-<p>方五洲为徐缨挡落石，男友力max，他们整个的感情戏还是很混乱的</p>
-<p>方五洲3兄弟的情谊后来关系发生变化，还是让我有点惊讶的，后来曲松林由保摄影机到保人这个态度转变，<br>
-到后来的畏畏缩缩(徐缨提出还有窗口期可以攀登的时候)，这些都主要突出了主角决断的正确性。</p>
+          <p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html" target="_blank" rel="noopener">官方英文链接</a></p>
+<ul>
+<li>设置表中常用的一个列或者多个列为主键。没有用自增id做为主键。</li>
+<li>有相同id的表使用联表查询。使用数据结构相同的外键提高性能，保持数据完整性（外键能起到关联更新和删除的作用，防止在子表中插入父表中没有的数据）。</li>
+<li>关闭自动提交。每秒上百次提交影响性能（这取决于存储设备的性能）。</li>
+<li>批量数据库DML（Data manipulation language，增删改）操作使用事务。</li>
+<li>不使用表锁 <code>LOCK TABLES</code> 。innodb有行级锁，能够提高性能、保证数据完整。<code>SELECT ... FOR UPDATE</code></li>
+<li>启用<code>innodb_file_per_table</code>（默认已启用） 或者通用的表空间存放数据和索引到单独的文件中，替换系统的表空间</li>
+<li>自行判断使用 innodb 表压缩功能</li>
+<li>启动服务时配置  <code>--sql_mode=NO_ENGINE_SUBSTITUTION</code> ，防止创建其他储存引擎的表</li>
+</ul>
+<p>注：<br>
+<strong>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过再数据块中，对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，innoDB才使用行级锁，否则InnoDB将使用表锁，在实际开发中应当注意</strong><br>
+来源：<a href="https://www.cnblogs.com/fuwentao/p/7354145.html" target="_blank" rel="noopener">https://www.cnblogs.com/fuwentao/p/7354145.html</a></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/09/2019-10-08-hexo-leancloud-counter-security/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="梦之马">
+      <meta itemprop="description" content="生命不息，折腾不止">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梦之马的乐园">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/10/09/2019-10-08-hexo-leancloud-counter-security/" class="post-title-link" itemprop="url">hexo-leancloud-counter-security 配置</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-09 11:43:24" itemprop="dateCreated datePublished" datetime="2019-10-09T11:43:24+08:00">2019-10-09</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/10/09/2019-10-08-hexo-leancloud-counter-security/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/09/2019-10-08-hexo-leancloud-counter-security/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>599</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-leancloud-counter-security --save</span><br><span class="line">npm install babel-runtime --save</span><br></pre></td></tr></table></figure>
+<p>hexo-leancloud-counter-security 依赖 babel-runtime 模块</p>
+<p>还需要在项目的配置文件 _config.yml 中设置 (而不是主题 next 中配置文件中)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">leancloud_counter_security:</span><br><span class="line">  enable_sync: true</span><br></pre></td></tr></table></figure>
+<h1 id="错误"><a class="markdownIt-Anchor" href="#错误"></a> 错误</h1>
+<h2 id="error-cannot-find-module-babel-runtimeregenerator"><a class="markdownIt-Anchor" href="#error-cannot-find-module-babel-runtimeregenerator"></a> Error: Cannot find module ‘babel-runtime/regenerator’</h2>
+<p>少安装了依赖 babel-runtime</p>
+<h2 id="typeerror-cannot-read-property-enable_sync-of-undefined"><a class="markdownIt-Anchor" href="#typeerror-cannot-read-property-enable_sync-of-undefined"></a> TypeError: Cannot read property ‘enable_sync’ of undefined</h2>
+<p>未配置 enable_sync</p>
+<h1 id="最后"><a class="markdownIt-Anchor" href="#最后"></a> 最后</h1>
+<p>我总感觉 leancloud不太稳，如果是展示访问人数，我还是推荐不蒜子，直接启用就好使</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true</span><br><span class="line">  total_visitors_icon: user</span><br><span class="line">  total_views: true</span><br><span class="line">  total_views_icon: eye</span><br><span class="line">  post_views: true</span><br><span class="line">  post_views_icon: eye</span><br></pre></td></tr></table></figure>
 
         
       
@@ -594,7 +719,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/09/2019-10-08-hexo-leancloud-counter-security/">
+    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/09/2019-10-01-climber/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="梦之马">
@@ -608,134 +733,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/2019/10/09/2019-10-08-hexo-leancloud-counter-security/" class="post-title-link" itemprop="url">hexo-leancloud-counter-security 配置</a>
-          
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-09 11:43:24" itemprop="dateCreated datePublished" datetime="2019-10-09T11:43:24+08:00">2019-10-09</time>
-            </span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/10/09/2019-10-08-hexo-leancloud-counter-security/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/09/2019-10-08-hexo-leancloud-counter-security/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>599</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-leancloud-counter-security --save</span><br><span class="line">npm install babel-runtime --save</span><br></pre></td></tr></table></figure>
-<p>hexo-leancloud-counter-security 依赖 babel-runtime 模块</p>
-<p>还需要在项目的配置文件 _config.yml 中设置 (而不是主题 next 中配置文件中)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">leancloud_counter_security:</span><br><span class="line">  enable_sync: true</span><br></pre></td></tr></table></figure>
-<h1 id="错误"><a class="markdownIt-Anchor" href="#错误"></a> 错误</h1>
-<h2 id="error-cannot-find-module-babel-runtimeregenerator"><a class="markdownIt-Anchor" href="#error-cannot-find-module-babel-runtimeregenerator"></a> Error: Cannot find module ‘babel-runtime/regenerator’</h2>
-<p>少安装了依赖 babel-runtime</p>
-<h2 id="typeerror-cannot-read-property-enable_sync-of-undefined"><a class="markdownIt-Anchor" href="#typeerror-cannot-read-property-enable_sync-of-undefined"></a> TypeError: Cannot read property ‘enable_sync’ of undefined</h2>
-<p>未配置 enable_sync</p>
-<h1 id="最后"><a class="markdownIt-Anchor" href="#最后"></a> 最后</h1>
-<p>我总感觉 leancloud不太稳，如果是展示访问人数，我还是推荐不蒜子，直接启用就好使</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true</span><br><span class="line">  total_visitors_icon: user</span><br><span class="line">  total_views: true</span><br><span class="line">  total_views_icon: eye</span><br><span class="line">  post_views: true</span><br><span class="line">  post_views_icon: eye</span><br></pre></td></tr></table></figure>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </article>
-  
-  
-  
-
-    
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://songjiang951130.github.io/2019/10/09/2019-09-24-innodb-table/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="梦之马">
-      <meta itemprop="description" content="生命不息，折腾不止">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="梦之马的乐园">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/09/2019-09-24-innodb-table/" class="post-title-link" itemprop="url">innodb 最佳实践</a>
+            <a href="/2019/10/09/2019-10-01-climber/" class="post-title-link" itemprop="url">攀登者电影</a>
           
         </h2>
 
@@ -761,7 +759,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-10 11:01:00" itemprop="dateModified" datetime="2019-10-10T11:01:00+08:00">2019-10-10</time>
+                <time title="修改时间：2019-10-10 11:03:34" itemprop="dateModified" datetime="2019-10-10T11:03:34+08:00">2019-10-10</time>
               </span>
             
           
@@ -771,7 +769,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/movie/" itemprop="url" rel="index"><span itemprop="name">movie</span></a></span>
 
                 
                 
@@ -790,7 +788,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/10/09/2019-09-24-innodb-table/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/09/2019-09-24-innodb-table/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/10/09/2019-10-01-climber/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/10/09/2019-10-01-climber/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -802,7 +800,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>578</span>
+              <span>391</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -825,20 +823,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html" target="_blank" rel="noopener">官方英文链接</a></p>
-<ul>
-<li>设置表中常用的一个列或者多个列为主键。没有用自增id做为主键。</li>
-<li>有相同id的表使用联表查询。使用数据结构相同的外键提高性能，保持数据完整性（外键能起到关联更新和删除的作用，防止在子表中插入父表中没有的数据）。</li>
-<li>关闭自动提交。每秒上百次提交影响性能（这取决于存储设备的性能）。</li>
-<li>批量数据库DML（Data manipulation language，增删改）操作使用事务。</li>
-<li>不使用表锁 <code>LOCK TABLES</code> 。innodb有行级锁，能够提高性能、保证数据完整。<code>SELECT ... FOR UPDATE</code></li>
-<li>启用<code>innodb_file_per_table</code>（默认已启用） 或者通用的表空间存放数据和索引到单独的文件中，替换系统的表空间</li>
-<li>自行判断使用 innodb 表压缩功能</li>
-<li>启动服务时配置  <code>--sql_mode=NO_ENGINE_SUBSTITUTION</code> ，防止创建其他储存引擎的表</li>
-</ul>
-<p>注：<br>
-<strong>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过再数据块中，对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，innoDB才使用行级锁，否则InnoDB将使用表锁，在实际开发中应当注意</strong><br>
-来源：<a href="https://www.cnblogs.com/fuwentao/p/7354145.html" target="_blank" rel="noopener">https://www.cnblogs.com/fuwentao/p/7354145.html</a></p>
+          <p>剧情介绍不剧透那种，主要讲的是一行人历经险阻<code>两次</code>登上珠穆朗玛峰的故事。<br>
+看这部电影最大原因还是因为吴京，毕竟之前的流浪地球太火爆了。</p>
+<h1 id="为什么要登山"><a class="markdownIt-Anchor" href="#为什么要登山"></a> 为什么要登山</h1>
+<ol>
+<li>开篇有背景介绍，珠峰在和邻国边境上有争议，而且邻国已经在南边登顶了，我们需要登上自己的山。这登顶成功一行为还是极具历史意义的。</li>
+<li>人类总是要面向未来的，高山海底、宇宙，任何未知的东西都吸引着我们去探索（忘了原话了）</li>
+</ol>
+<p>对于第二点还是很有感触的，在学校有邓小平同志的标语</p>
+<blockquote>
+<p>面向现代化，面向世界，面向未来</p>
+</blockquote>
+<p>此刻便觉得伟人的伟大之处。人类是向前发展壮大的，少不了这种攀登顶峰的精神，少不了教育的支撑。</p>
+<h1 id="一些片段"><a class="markdownIt-Anchor" href="#一些片段"></a> 一些片段</h1>
+<p>方五洲为徐缨挡落石，男友力max，他们整个的感情戏还是很混乱的</p>
+<p>方五洲3兄弟的情谊后来关系发生变化，还是让我有点惊讶的，后来曲松林由保摄影机到保人这个态度转变，<br>
+到后来的畏畏缩缩(徐缨提出还有窗口期可以攀登的时候)，这些都主要突出了主角决断的正确性。</p>
 
         
       

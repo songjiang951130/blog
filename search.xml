@@ -268,50 +268,25 @@
     
     
     <entry>
-      <title>攀登者电影</title>
-      <link href="/2019/10/09/2019-10-01-climber/"/>
-      <url>/2019/10/09/2019-10-01-climber/</url>
+      <title>innodb 最佳实践</title>
+      <link href="/2019/10/09/2019-09-24-innodb-table/"/>
+      <url>/2019/10/09/2019-09-24-innodb-table/</url>
       
-        <content type="html"><![CDATA[<p>剧情介绍不剧透那种，主要讲的是一行人历经险阻<code>两次</code>登上珠穆朗玛峰的故事。<br>看这部电影最大原因还是因为吴京，毕竟之前的流浪地球太火爆了。</p><h1 id="为什么要登山"><a class="markdownIt-Anchor" href="#为什么要登山"></a> 为什么要登山</h1><ol><li>开篇有背景介绍，珠峰在和邻国边境上有争议，而且邻国已经在南边登顶了，我们需要登上自己的山。这登顶成功一行为还是极具历史意义的。</li><li>人类总是要面向未来的，高山海底、宇宙，任何未知的东西都吸引着我们去探索（忘了原话了）</li></ol><p>对于第二点还是很有感触的，在学校有邓小平同志的标语</p><blockquote><p>面向现代化，面向世界，面向未来</p></blockquote><p>此刻便觉得伟人的伟大之处。人类是向前发展壮大的，少不了这种攀登顶峰的精神，少不了教育的支撑。</p><h1 id="一些片段"><a class="markdownIt-Anchor" href="#一些片段"></a> 一些片段</h1><p>方五洲为徐缨挡落石，男友力max，他们整个的感情戏还是很混乱的</p><p>方五洲3兄弟的情谊后来关系发生变化，还是让我有点惊讶的，后来曲松林由保摄影机到保人这个态度转变，<br>到后来的畏畏缩缩(徐缨提出还有窗口期可以攀登的时候)，这些都主要突出了主角决断的正确性。</p>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html" target="_blank" rel="noopener">官方英文链接</a></p><ul><li>设置表中常用的一个列或者多个列为主键。没有用自增id做为主键。</li><li>有相同id的表使用联表查询。使用数据结构相同的外键提高性能，保持数据完整性（外键能起到关联更新和删除的作用，防止在子表中插入父表中没有的数据）。</li><li>关闭自动提交。每秒上百次提交影响性能（这取决于存储设备的性能）。</li><li>批量数据库DML（Data manipulation language，增删改）操作使用事务。</li><li>不使用表锁 <code>LOCK TABLES</code> 。innodb有行级锁，能够提高性能、保证数据完整。<code>SELECT ... FOR UPDATE</code></li><li>启用<code>innodb_file_per_table</code>（默认已启用） 或者通用的表空间存放数据和索引到单独的文件中，替换系统的表空间</li><li>自行判断使用 innodb 表压缩功能</li><li>启动服务时配置  <code>--sql_mode=NO_ENGINE_SUBSTITUTION</code> ，防止创建其他储存引擎的表</li></ul><p>注：<br><strong>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过再数据块中，对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，innoDB才使用行级锁，否则InnoDB将使用表锁，在实际开发中应当注意</strong><br>来源：<a href="https://www.cnblogs.com/fuwentao/p/7354145.html" target="_blank" rel="noopener">https://www.cnblogs.com/fuwentao/p/7354145.html</a></p>]]></content>
       
       
       <categories>
           
-          <category> movie </category>
+          <category> mysql </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 攀登者 </tag>
+            <tag> mysql </tag>
             
-            <tag> 吴京 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>穷爸爸富爸爸</title>
-      <link href="/2019/10/09/2019-10-05-rich-father/"/>
-      <url>/2019/10/09/2019-10-05-rich-father/</url>
-      
-        <content type="html"><![CDATA[<p>为企业老板打工，出售自己的个人时间和技能，然后为郭嘉贡献税收，贷款买房又为银行创造收益。</p><p>（首套）房子不是资产，在贷款购买首套房的情况下，你需要每月支付钱，甚至直到30年后才有房子的所有权。这构成了每月的必须支出项，这样缺少了更多的现金去购置资产。<br>作者认为能带来现金流的房子才是资产，需要考虑的是租金收入，未来增值等多个问题，是否合适</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">富人购买资产</span><br><span class="line">穷人购买负债</span><br><span class="line">中产阶级购买自以为资产的负债</span><br></pre></td></tr></table></figure><h1 id="43-关注自己的事业"><a class="markdownIt-Anchor" href="#43-关注自己的事业"></a> 4.3 关注自己的事业</h1><blockquote><p>学校的问题在于你在哪里学到了什么就会从事什么。如果你学到的是烹饪，你就会成为一名厨师；如果学的是法律，就是成为律师。</p></blockquote><p>ps：大部分人是如此按部就班的活下去，却忘记了自己的梦想或者说是初心。</p><blockquote><p>事业的重心是你的资产项，而不是收入项</p></blockquote><p>所以在从事工作的时候，更加关注个人成长性。在没有成长性的时候，及时止损。</p><p>作者的资产分类：</p><ol><li>不需要到场就能正常运作的业务</li><li>股票</li><li>债券</li><li>共同基金</li><li>能产生收入的房地产</li><li>票据（借据）(但是更多的是收不回来，成为了损失)</li><li>版税，如音乐、手稿</li><li>有价值有销路的东西</li></ol><h1 id="税收的历史"><a class="markdownIt-Anchor" href="#税收的历史"></a> 税收的历史</h1><p>最初的设计是为了向富人征收，但目前实际上是对穷人的征收得更多，富人有自己得避税手段，比如1元年薪等。<br>还说了很多政府不好的话，居然在我国没被禁，哈哈哈。作者说政府会对个人所得税收的胃口越来越大，从富人到中产甚至穷人都要征收。</p><p>不过我国个人所得税已经调整了起征点和税率，点赞！</p><p>作者认为的财商构成：</p><ul><li>会计，财务知识。需要看懂公司的财务报表，判断一项生意的优势劣势</li><li>投资，涉及策略和方案</li><li>了解市场，供求关系和基本面</li><li>法律，开企业的时候了解减税等政策优惠、诉讼中得到保护</li></ul><p>我现在觉得ofo居然可以挪用押金，还有700w人没有退押金，这样的操作相关都能不受到惩罚，而且在偿还的时候，ofo先偿还了他和其他企业（提供自行车的）的欠款，有关部门只是发了声明说押金得退。我不懂法律，感觉懂法律的话能让自己的资金更加安全又保障。</p><h1 id="富人的投资"><a class="markdownIt-Anchor" href="#富人的投资"></a> 富人的投资</h1><p>拥有理财能力，便拥有了更多的选择机会。</p><p>金钱不是资产，是共同认可的东西。我们最重要的资产是头脑。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 投资 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 穷爸爸富爸爸 </tag>
+            <tag> innodb </tag>
             
         </tags>
       
@@ -345,25 +320,50 @@
     
     
     <entry>
-      <title>innodb 最佳实践</title>
-      <link href="/2019/10/09/2019-09-24-innodb-table/"/>
-      <url>/2019/10/09/2019-09-24-innodb-table/</url>
+      <title>穷爸爸富爸爸</title>
+      <link href="/2019/10/09/2019-10-05-rich-father/"/>
+      <url>/2019/10/09/2019-10-05-rich-father/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-best-practices.html" target="_blank" rel="noopener">官方英文链接</a></p><ul><li>设置表中常用的一个列或者多个列为主键。没有用自增id做为主键。</li><li>有相同id的表使用联表查询。使用数据结构相同的外键提高性能，保持数据完整性（外键能起到关联更新和删除的作用，防止在子表中插入父表中没有的数据）。</li><li>关闭自动提交。每秒上百次提交影响性能（这取决于存储设备的性能）。</li><li>批量数据库DML（Data manipulation language，增删改）操作使用事务。</li><li>不使用表锁 <code>LOCK TABLES</code> 。innodb有行级锁，能够提高性能、保证数据完整。<code>SELECT ... FOR UPDATE</code></li><li>启用<code>innodb_file_per_table</code>（默认已启用） 或者通用的表空间存放数据和索引到单独的文件中，替换系统的表空间</li><li>自行判断使用 innodb 表压缩功能</li><li>启动服务时配置  <code>--sql_mode=NO_ENGINE_SUBSTITUTION</code> ，防止创建其他储存引擎的表</li></ul><p>注：<br><strong>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，后者是通过再数据块中，对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，innoDB才使用行级锁，否则InnoDB将使用表锁，在实际开发中应当注意</strong><br>来源：<a href="https://www.cnblogs.com/fuwentao/p/7354145.html" target="_blank" rel="noopener">https://www.cnblogs.com/fuwentao/p/7354145.html</a></p>]]></content>
+        <content type="html"><![CDATA[<p>为企业老板打工，出售自己的个人时间和技能，然后为郭嘉贡献税收，贷款买房又为银行创造收益。</p><p>（首套）房子不是资产，在贷款购买首套房的情况下，你需要每月支付钱，甚至直到30年后才有房子的所有权。这构成了每月的必须支出项，这样缺少了更多的现金去购置资产。<br>作者认为能带来现金流的房子才是资产，需要考虑的是租金收入，未来增值等多个问题，是否合适</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">富人购买资产</span><br><span class="line">穷人购买负债</span><br><span class="line">中产阶级购买自以为资产的负债</span><br></pre></td></tr></table></figure><h1 id="43-关注自己的事业"><a class="markdownIt-Anchor" href="#43-关注自己的事业"></a> 4.3 关注自己的事业</h1><blockquote><p>学校的问题在于你在哪里学到了什么就会从事什么。如果你学到的是烹饪，你就会成为一名厨师；如果学的是法律，就是成为律师。</p></blockquote><p>ps：大部分人是如此按部就班的活下去，却忘记了自己的梦想或者说是初心。</p><blockquote><p>事业的重心是你的资产项，而不是收入项</p></blockquote><p>所以在从事工作的时候，更加关注个人成长性。在没有成长性的时候，及时止损。</p><p>作者的资产分类：</p><ol><li>不需要到场就能正常运作的业务</li><li>股票</li><li>债券</li><li>共同基金</li><li>能产生收入的房地产</li><li>票据（借据）(但是更多的是收不回来，成为了损失)</li><li>版税，如音乐、手稿</li><li>有价值有销路的东西</li></ol><h1 id="税收的历史"><a class="markdownIt-Anchor" href="#税收的历史"></a> 税收的历史</h1><p>最初的设计是为了向富人征收，但目前实际上是对穷人的征收得更多，富人有自己得避税手段，比如1元年薪等。<br>还说了很多政府不好的话，居然在我国没被禁，哈哈哈。作者说政府会对个人所得税收的胃口越来越大，从富人到中产甚至穷人都要征收。</p><p>不过我国个人所得税已经调整了起征点和税率，点赞！</p><p>作者认为的财商构成：</p><ul><li>会计，财务知识。需要看懂公司的财务报表，判断一项生意的优势劣势</li><li>投资，涉及策略和方案</li><li>了解市场，供求关系和基本面</li><li>法律，开企业的时候了解减税等政策优惠、诉讼中得到保护</li></ul><p>我现在觉得ofo居然可以挪用押金，还有700w人没有退押金，这样的操作相关都能不受到惩罚，而且在偿还的时候，ofo先偿还了他和其他企业（提供自行车的）的欠款，有关部门只是发了声明说押金得退。我不懂法律，感觉懂法律的话能让自己的资金更加安全又保障。</p><h1 id="富人的投资"><a class="markdownIt-Anchor" href="#富人的投资"></a> 富人的投资</h1><p>拥有理财能力，便拥有了更多的选择机会。</p><p>金钱不是资产，是共同认可的东西。我们最重要的资产是头脑。</p>]]></content>
       
       
       <categories>
           
-          <category> mysql </category>
+          <category> 投资 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> mysql </tag>
+            <tag> 穷爸爸富爸爸 </tag>
             
-            <tag> innodb </tag>
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>攀登者电影</title>
+      <link href="/2019/10/09/2019-10-01-climber/"/>
+      <url>/2019/10/09/2019-10-01-climber/</url>
+      
+        <content type="html"><![CDATA[<p>剧情介绍不剧透那种，主要讲的是一行人历经险阻<code>两次</code>登上珠穆朗玛峰的故事。<br>看这部电影最大原因还是因为吴京，毕竟之前的流浪地球太火爆了。</p><h1 id="为什么要登山"><a class="markdownIt-Anchor" href="#为什么要登山"></a> 为什么要登山</h1><ol><li>开篇有背景介绍，珠峰在和邻国边境上有争议，而且邻国已经在南边登顶了，我们需要登上自己的山。这登顶成功一行为还是极具历史意义的。</li><li>人类总是要面向未来的，高山海底、宇宙，任何未知的东西都吸引着我们去探索（忘了原话了）</li></ol><p>对于第二点还是很有感触的，在学校有邓小平同志的标语</p><blockquote><p>面向现代化，面向世界，面向未来</p></blockquote><p>此刻便觉得伟人的伟大之处。人类是向前发展壮大的，少不了这种攀登顶峰的精神，少不了教育的支撑。</p><h1 id="一些片段"><a class="markdownIt-Anchor" href="#一些片段"></a> 一些片段</h1><p>方五洲为徐缨挡落石，男友力max，他们整个的感情戏还是很混乱的</p><p>方五洲3兄弟的情谊后来关系发生变化，还是让我有点惊讶的，后来曲松林由保摄影机到保人这个态度转变，<br>到后来的畏畏缩缩(徐缨提出还有窗口期可以攀登的时候)，这些都主要突出了主角决断的正确性。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> movie </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 攀登者 </tag>
+            
+            <tag> 吴京 </tag>
             
         </tags>
       
